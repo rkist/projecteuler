@@ -4,4 +4,4 @@ import module2
 
     
 
-#print module1.GetSumOfMultiplesInRange(3,0,1000)
+print module1.GetSumOfMultiplesInRange(3,0,1000)
