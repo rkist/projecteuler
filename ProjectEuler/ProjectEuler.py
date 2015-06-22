@@ -1,17 +1,11 @@
 import module1
 import module2
+import module3
 
-fibArray = module2.BuildFibonacciSequenceMaximumBased(4000000)
+primeFactors1 = module3.GetPrimeFactors(13195)
+print primeFactors1
 
-sum1 = module2.GetSumOfNonMultiplesInArray(1,fibArray)
-sum2 = module2.GetSumOfNonMultiplesInArray(2,fibArray)
-
-sum3 = module2.GetSumOfMultiplesInArray(1,fibArray)
-sum4 = module2.GetSumOfMultiplesInArray(2,fibArray)
+primeFactors2 = module3.GetPrimeFactors(600851475143)
+print primeFactors2
 
 
-print fibArray
-print sum1
-print sum2
-print sum3
-print sum4
