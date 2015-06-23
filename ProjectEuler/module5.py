@@ -15,7 +15,7 @@ def FirstDivisibleInArray(array):
 
 
 def FirstDivisibleInRange(start, end):
-    current = end
+    current = end-1
     divisor = start
 
     while divisor < end:
@@ -23,6 +23,6 @@ def FirstDivisibleInRange(start, end):
             divisor += 1
         else:
             divisor = start
-            current += 1
+            current += end-1
     return current
 
