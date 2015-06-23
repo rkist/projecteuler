@@ -1,11 +1,18 @@
 import module1
 import module2
 import module3
+import module4
 
-primeFactors1 = module3.GetPrimeFactors(13195)
-print primeFactors1
 
-primeFactors2 = module3.GetPrimeFactors(600851475143)
-print primeFactors2
+
+
+isPal = module4.IsPalindrome(12345)
+print isPal
+
+isPal = module4.IsPalindrome(12321)
+print isPal
+
+isPal = module4.IsPalindrome(123321)
+print isPal
 
 
