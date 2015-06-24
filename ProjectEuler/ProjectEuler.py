@@ -7,6 +7,10 @@ import module6
 import module7
 
 
+arr = module7.GetPrimeNumbersUpTo(6)
+print arr
 
 
+arr = module7.GetPrimeNumbersUpTo(10001)
+print arr
 

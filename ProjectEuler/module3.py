@@ -2,7 +2,7 @@ import math
 
 def GetDivisors(value):
     arr = []
-    for divisor in range(1,int(math.sqrt(value) + 0.5)):
+    for divisor in range(2,int(math.sqrt(value) + 0.5)+1):
         if value % divisor == 0:
             arr.append(divisor)
 
