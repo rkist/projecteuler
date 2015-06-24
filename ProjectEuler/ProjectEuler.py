@@ -3,11 +3,16 @@ import module2
 import module3
 import module4
 import module5
+import module6
 
+arr = range(1,10)
 
-fd = module5.FirstDivisibleInRange(1,21)
-print fd
+sum1 = module6.SquareOfSumOfArray(arr) 
+sum2 = module6.SumOfSquaresOfArray(arr) 
 
+diff = sum1 - sum2
+
+print diff
 
 
 
