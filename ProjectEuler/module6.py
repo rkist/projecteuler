@@ -1,5 +1,15 @@
+
 def SumOfSquaresOfArray(values):
-    return 1
+    sum = 0
+    for val in values:
+        sum += val*val
+    
+    return sum
 
 def SquareOfSumOfArray(values):
-    return 1
+    sum = 0
+    for val in values:
+        sum += val
+
+    sum = sum*sum
+    return sum
