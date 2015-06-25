@@ -41,6 +41,9 @@
     <Compile Include="module7.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module8.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ProjectEuler.py" />
   </ItemGroup>
   <PropertyGroup>
