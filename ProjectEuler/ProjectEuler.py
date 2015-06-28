@@ -1,10 +1,11 @@
 
-import module9
+import module7
 
 
+priArr = module7.GetPrimeNumbersUpTo(2000000)
 
-for a in xrange(1,1000):
-    for b in xrange(1,1000 - a):
-        c = 1000 - a - b
-        if module9.IsPythagoreanTriplet(a, b, c):
-            print a*b*c
+#print priArr
+sum = 0
+for num in priArr:
+    sum += num
+print sum

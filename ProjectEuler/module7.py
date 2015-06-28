@@ -6,7 +6,7 @@ def IsPrime(value):
         return True
     return False
 
-def GetPrimeNumbersUpTo(value):
+def GetFirstPrimeNumbersUpTo(value):
     arr = []
     currValue = 2
     while len(arr) < value:
@@ -15,4 +15,11 @@ def GetPrimeNumbersUpTo(value):
         currValue+=1
     return arr
 
-
+def GetPrimeNumbersUpTo(value):
+    arr = []
+    currValue = 2
+    while currValue < value:
+        if IsPrime(currValue):
+            arr.append(currValue)
+        currValue+=1
+    return arr
