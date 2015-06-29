@@ -23,7 +23,26 @@ def GetMaxMultInMatrix(matrix, arraysize):
         for y in xrange(0,lenY):
             mult = 1
             for i in xrange(0,arraysize):
-                mult *= matrix[x+arraysize][y]
+                mult *= matrix[x+i][y]
+            if mult > maxMult:
+                maxMult = mult
+
+
+    #horizontal
+    for x in xrange(0,lenX):
+        for y in xrange(0,lenY-arraysize):
+            mult = 1
+            for i in xrange(0,arraysize):
+                mult *= matrix[x][y+i]
+            if mult > maxMult:
+                maxMult = mult
+
+    #diagonal
+    for x in xrange(0,lenX-arraysize):
+        for y in xrange(0,lenY-arraysize):
+            mult = 1
+            for i in xrange(0,arraysize):
+                mult *= matrix[x+i][y+i]
             if mult > maxMult:
                 maxMult = mult
 
