@@ -1,11 +1,8 @@
 
-import module7
+import module11
+
+input = module11.GetInput("input11.txt")
+
+print input[0]
 
 
-priArr = module7.GetPrimeNumbersUpTo(2000000)
-
-#print priArr
-sum = 0
-for num in priArr:
-    sum += num
-print sum
