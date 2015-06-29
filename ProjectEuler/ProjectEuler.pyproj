@@ -25,6 +25,7 @@
     <Compile Include="module1.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module11.py" />
     <Compile Include="module2.py">
       <SubType>Code</SubType>
     </Compile>
