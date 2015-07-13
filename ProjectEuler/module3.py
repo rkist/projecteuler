@@ -1,6 +1,13 @@
 import math
 
-def GetDivisors(value):
+def GetAllDivisors(value):
+    arr = []
+    for divisor in range(1,value+1):
+        if value % divisor == 0:
+            arr.append(divisor)
+    return arr
+
+def GetDivisorsOpt(value):
     arr = []
     for divisor in range(2,int(math.sqrt(value) + 0.5)+1):
         if value % divisor == 0:
