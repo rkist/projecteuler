@@ -8,11 +8,16 @@ def GetInput(path):
         numArr.append(bn)
     return numArr
 
-class BigNumber:
-    def __init__(self, value = ""):
+class BigNumber(object ):
+    def __init__(self, value):
         self.number = []
-        for ch in reversed(value):
-            self.number.append(int(ch))
+        if isinstance(value, basestring):
+            for ch in reversed(value):
+                self.number.append(int(ch))
+        elif isinstance(value, list):
+            for i in reversed(value):
+                self.number.append(i)
+
 
     def __str__(self):
         retstr = ""
@@ -34,9 +39,47 @@ class BigNumber:
             self.number[index] = (currVal) % 10
             index += 1
 
+    @property
+    def Number(self):
+        rvcp = self.number[:]
+        rvcp.reverse()
+        return rvcp
 
 
-    #def __add__(self, other):
+    def __add__(self, other):
+        otherNumberReversed = other.Number
+        otherNumberReversed.reverse()
+        otherNumberReversed.append(0)
+
+        thisNumber = self.number[:]
+
+        for index in range(0,len(otherNumberReversed)):
+            if (index == len(thisNumber)):
+                thisNumber.append(0)
+            currVal = thisNumber[index] + otherNumberReversed[index]
+            if currVal > 9:
+                otherNumberReversed[index+1] += 1
+            thisNumber[index] = (currVal) % 10
+
+        thisNumber.reverse()
+        return BigNumber(thisNumber)
+
+
+    def __iadd__(self, other):
+        otherNumberReversed = other.Number
+        otherNumberReversed.reverse()
+        otherNumberReversed.append(0)
+
+        for index in range(0,len(otherNumberReversed)):
+            if (index == len(self.number)):
+                self.number.append(0)
+            currVal = self.number[index] + otherNumberReversed[index]
+            if currVal > 9:
+                otherNumberReversed[index+1] += 1
+            self.number[index] = (currVal) % 10
+        return self
+
+
 
 
         

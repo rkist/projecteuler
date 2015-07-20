@@ -3,15 +3,20 @@ import module13
 
 inputs = module13.GetInput("input/input13.txt")
 
-print len(inputs)
-print inputs[0]
+#print len(inputs)
+#print inputs[0]
 
-bn = module13.BigNumber("193")
+bn1 = module13.BigNumber("193")
+bn2 = module13.BigNumber("12")
 
-bn.AddInt(12)
+bn3 = bn1 + bn2
 
-print bn
-print bn
+print bn3
+
+bn1 += bn2
+
+print bn1
+
 
 
 
