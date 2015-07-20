@@ -9,7 +9,7 @@ def GetAllDivisorsArray(value):
 
 def GetDivisorsArrayOpt(value):
     arr = []
-    for divisor in range(2,int(math.sqrt(value) + 0.5)+1):
+    for divisor in range(1,int(math.sqrt(value) + 1)+1):
         if value % divisor == 0:
             arr.append(divisor)
 
@@ -18,10 +18,11 @@ def GetDivisorsArrayOpt(value):
 
 def GetPrimeFactorsArray(value):
     primeDivisors = []
-    divisors = GetDivisors(value)
+    divisors = GetAllDivisorsArray(value)
 
     for divisor in divisors:
-        divdiv = GetDivisors(divisor)        
-        if len(divdiv) == 1:
+        divdiv = GetAllDivisorsArray(divisor)       
+        l = len(divdiv) 
+        if l == 2 or l == 1:
             primeDivisors.append(divisor)
     return primeDivisors
