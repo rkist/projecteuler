@@ -1,13 +1,13 @@
 import math
 
-def GetAllDivisors(value):
+def GetAllDivisorsArray(value):
     arr = []
     for divisor in range(1,value+1):
         if value % divisor == 0:
             arr.append(divisor)
     return arr
 
-def GetDivisorsOpt(value):
+def GetDivisorsArrayOpt(value):
     arr = []
     for divisor in range(2,int(math.sqrt(value) + 0.5)+1):
         if value % divisor == 0:
@@ -16,9 +16,7 @@ def GetDivisorsOpt(value):
     return arr
 
 
-
-
-def GetPrimeFactors(value):
+def GetPrimeFactorsArray(value):
     primeDivisors = []
     divisors = GetDivisors(value)
 
