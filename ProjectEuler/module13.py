@@ -1,15 +1,22 @@
+
+def GetInput(path):
+    numArr = []
+    inputStr = file(path).read()
+    lines = inputStr.splitlines()
+    for line in lines:
+        bn = BigNumber(line)
+        numArr.append(bn)
+    return numArr
+
 class BigNumber:
-    number = []
-    def __init__(self, value = 0):
-        while value > 0:
-            self.number.append(value%10)
-            value/=10
+    def __init__(self, value = ""):
+        self.number = []
+        for ch in reversed(value):
+            self.number.append(int(ch))
 
     def __str__(self):
         retstr = ""
-        revnumber = self.number[:]
-        revnumber.reverse()
-        for n in revnumber:
+        for n in reversed(self.number):
             retstr += str(n)
         return retstr
 

@@ -1,9 +1,14 @@
 import module13
 
 
-bn = module13.BigNumber(990)
+inputs = module13.GetInput("input/input13.txt")
 
-bn.AddInt(11)
+print len(inputs)
+print inputs[0]
+
+bn = module13.BigNumber("193")
+
+bn.AddInt(12)
 
 print bn
 print bn
