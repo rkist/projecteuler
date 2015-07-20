@@ -29,6 +29,9 @@
     <Compile Include="module12.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module13.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="module2.py">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +55,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProjectEuler.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="input\input11.1.txt" />
+    <Content Include="input\input11.txt" />
+    <Content Include="input\input13.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="input\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

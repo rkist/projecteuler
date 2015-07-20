@@ -20,26 +20,24 @@ def GetTriangleNumberByFormula(position):
 def GetDivisorsOfTriangleNumber(position):
     tn = GetTriangleNumberByFormula(position)
     divs = module3.GetAllDivisorsArray(tn)
-    print divs
     return divs
 
 def GetDivisorsOfTriangleNumberFaster(position):
-    #nums = [position,position+1]
+    nums = [position,position+1]
 
-    #if position % 2 == 0:
-    #    nums[0] = position/2
-    #else:
-    #    nums[1] = (position+1)/2
+    if position % 2 == 0:
+        nums[0] = position/2
+    else:
+        nums[1] = (position+1)/2
 
-    
-    #prim1 = Set(module3.GetPrimeFactorsArray(nums[0]))
-    #prim2 = Set(module3.GetPrimeFactorsArray(nums[1]))
+    divs1 = module3.GetAllDivisorsArray(nums[0])
+    divs2 = module3.GetAllDivisorsArray(nums[1])
 
-    #primes = prim1 | prim2 | Set(nums)
-    
+    divisors = Set(divs1) | Set(divs2)
 
-    tn = GetTriangleNumberByFormula(position)
-    primes = module3.GetPrimeFactorsArray(tn)
-    print primes
+    for d1 in divs1:
+        for d2 in divs2:
+            divisors.add(d1*d2)
 
-    return primes
+    #print divisors
+    return divisors
