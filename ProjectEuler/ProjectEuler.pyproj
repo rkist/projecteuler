@@ -32,6 +32,9 @@
     <Compile Include="module13.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module14.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="module2.py">
       <SubType>Code</SubType>
     </Compile>

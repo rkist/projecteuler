@@ -66,9 +66,6 @@ class BigNumber(object ):
             
             index += 1
 
-
-            
-
         thisNumber.reverse()
         return BigNumber(thisNumber)
 
@@ -85,14 +82,12 @@ class BigNumber(object ):
                 self.number.append(0)
             if (index+1 == len(otherNumberReversed)):
                 otherNumberReversed.append(0)
-            
 
             currVal = self.number[index] + otherNumberReversed[index]
             otherNumberReversed[index+1] += (currVal) / 10
             self.number[index] = (currVal) % 10
             
             index += 1
-
 
         return self
 
