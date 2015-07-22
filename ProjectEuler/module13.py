@@ -34,8 +34,7 @@ class BigNumber(object ):
             v = value % 10
             value /= 10
             currVal = self.number[index] + v
-            if currVal > 9:
-                value += 1
+            value += currVal / 10
             self.number[index] = (currVal) % 10
             index += 1
 
@@ -49,17 +48,26 @@ class BigNumber(object ):
     def __add__(self, other):
         otherNumberReversed = other.Number
         otherNumberReversed.reverse()
-        otherNumberReversed.append(0)
 
         thisNumber = self.number[:]
 
-        for index in range(0,len(otherNumberReversed)):
+        index = 0
+        while True:
+            if thisNumber[-1] == 0 and otherNumberReversed[-1] == 0:
+                break
             if (index == len(thisNumber)):
                 thisNumber.append(0)
+            if (index+1 == len(otherNumberReversed)):
+                otherNumberReversed.append(0)
+
             currVal = thisNumber[index] + otherNumberReversed[index]
-            if currVal > 9:
-                otherNumberReversed[index+1] += 1
+            otherNumberReversed[index+1] += (currVal) / 10
             thisNumber[index] = (currVal) % 10
+            
+            index += 1
+
+
+            
 
         thisNumber.reverse()
         return BigNumber(thisNumber)
@@ -68,15 +76,24 @@ class BigNumber(object ):
     def __iadd__(self, other):
         otherNumberReversed = other.Number
         otherNumberReversed.reverse()
-        otherNumberReversed.append(0)
 
-        for index in range(0,len(otherNumberReversed)):
+        index = 0
+        while True:
+            if self.number[-1] == 0 and otherNumberReversed[-1] == 0:
+                break
             if (index == len(self.number)):
                 self.number.append(0)
+            if (index+1 == len(otherNumberReversed)):
+                otherNumberReversed.append(0)
+            
+
             currVal = self.number[index] + otherNumberReversed[index]
-            if currVal > 9:
-                otherNumberReversed[index+1] += 1
+            otherNumberReversed[index+1] += (currVal) / 10
             self.number[index] = (currVal) % 10
+            
+            index += 1
+
+
         return self
 
 

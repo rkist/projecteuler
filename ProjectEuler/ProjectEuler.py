@@ -3,11 +3,17 @@ import module13
 
 inputs = module13.GetInput("input/input13.txt")
 
-#print len(inputs)
-#print inputs[0]
 
-bn1 = module13.BigNumber("193")
-bn2 = module13.BigNumber("12")
+sum =  module13.BigNumber("0")
+for bn in inputs:
+    sum += bn
+
+
+print sum
+
+
+bn1 = module13.BigNumber("999")
+bn2 = module13.BigNumber("1")
 
 bn3 = bn1 + bn2
 
