@@ -16,14 +16,15 @@ def FindNumberOfPathsDynamic(start, end):
 
 
 def __FindNumberOfPathsDynamicRecursion__(start, end, pathmatrix):
-    if pathmatrix[start[0]][start[1]] != -1:
-        return pathmatrix[start[0]][start[1]]
     if start == end:
         return 1
+    if pathmatrix[start[0]][start[1]] != -1:
+        return pathmatrix[start[0]][start[1]]
+
     if start[0] == end[0]:
-        pathmatrix[start[0]][start[1]] = FindNumberOfPaths((start[0],start[1]+1),end)
-    if start[1] == end[1]:
-        pathmatrix[start[0]][start[1]] = FindNumberOfPaths((start[0]+1,start[1]),end)
+        pathmatrix[start[0]][start[1]] = __FindNumberOfPathsDynamicRecursion__((start[0],start[1]+1), end, pathmatrix)
+    elif start[1] == end[1]:
+        pathmatrix[start[0]][start[1]] = __FindNumberOfPathsDynamicRecursion__((start[0]+1,start[1]), end, pathmatrix)
     else:
-        pathmatrix[start[0]][start[1]] = FindNumberOfPaths((start[0],start[1]+1),end) + FindNumberOfPaths((start[0]+1,start[1]),end)
+        pathmatrix[start[0]][start[1]] = __FindNumberOfPathsDynamicRecursion__((start[0],start[1]+1), end, pathmatrix) + __FindNumberOfPathsDynamicRecursion__((start[0]+1,start[1]), end, pathmatrix)
     return pathmatrix[start[0]][start[1]]
