@@ -71,7 +71,6 @@ class BigNumber(object):
         thisNumber.reverse()
         return BigNumber(thisNumber)
 
-
     def __iadd__(self, other):
         otherNumberReversed = other.Number
         otherNumberReversed.reverse()
@@ -93,4 +92,33 @@ class BigNumber(object):
 
         return self
 
+
+    def __mul__(self, other):
+        otherNumberReversed = other.Number
+        otherNumberReversed.reverse()
+
+        thisNumber = self.number[:]
+
+        index1 = 0
+        index2 = 0
+        while True:
+            while True:
+                if thisNumber[-1] == 0 and otherNumberReversed[-1] == 0:
+                    break
+                if (index == len(thisNumber)):
+                    thisNumber.append(0)
+                if (index+1 == len(otherNumberReversed)):
+                    otherNumberReversed.append(0)
+
+                currVal = thisNumber[index1] * otherNumberReversed[index2]
+                otherNumberReversed[index+1] += (currVal) / self.base
+                thisNumber[index] = (currVal) % self.base
+            
+                index2 += 1
+            index1 += 1
+
+
+
+        thisNumber.reverse()
+        return BigNumber(thisNumber)
 

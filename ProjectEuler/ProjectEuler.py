@@ -1,9 +1,9 @@
 from bignumber import *
 
-bn = BigNumber("9910")
-bnn = BigNumber("90")
+bn = BigNumber("21")
+bnn = BigNumber("2")
 
-print bn + bnn
+print bn * bnn
 
 
 
