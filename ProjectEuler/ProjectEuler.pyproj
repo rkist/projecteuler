@@ -41,6 +41,12 @@
     <Compile Include="module15.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module16.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="module17.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="module2.py">
       <SubType>Code</SubType>
     </Compile>
@@ -64,6 +70,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProjectEuler.py" />
+    <Compile Include="pynum2word\num2word.py" />
+    <Compile Include="pynum2word\num2word_base.py" />
+    <Compile Include="pynum2word\num2word_DE.py" />
+    <Compile Include="pynum2word\num2word_EN.py" />
+    <Compile Include="pynum2word\num2word_EN_GB.py" />
+    <Compile Include="pynum2word\num2word_EN_GB_old.py" />
+    <Compile Include="pynum2word\num2word_ES.py" />
+    <Compile Include="pynum2word\num2word_EU.py" />
+    <Compile Include="pynum2word\num2word_FR.py" />
+    <Compile Include="pynum2word\orderedmapping.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="input\input11.1.txt" />
@@ -72,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="input\" />
+    <Folder Include="pynum2word\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

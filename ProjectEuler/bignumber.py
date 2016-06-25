@@ -20,17 +20,45 @@ class BigNumber(object):
     def AddInt(self, value):
         index = 0
         carry = 0
-        while value > 0:
-            if (index == len(self.number)):
-                self.number.append(0)
-            v = value % self.base
-            value /= self.base
 
-            currVal = self.number[index] + v
+        valueAux = value
+        if (value > 0):
+            while valueAux > 0:
+                if (index == len(self.number)):
+                    self.number.append(0)
+                v = valueAux % self.base
+                valueAux /= self.base
 
-            value += currVal / self.base
-            self.number[index] = (currVal) % self.base
-            index += 1
+                currVal = self.number[index] + v
+
+                valueAux += currVal / self.base
+                self.number[index] = (currVal) % self.base
+                index += 1
+
+    def IsZero(self):
+        for num in self.number:
+            if (num != 0):
+                return False
+        return True
+
+
+    def DecreaseOne(self):
+        index = 0
+
+        while True:
+            currVal = self.number[index] - 1
+            if (currVal < 0):
+                if (self.IsZero()):
+                    break;
+                self.number[index] = 9
+                index += 1
+            else:
+                self.number[index] = currVal
+                break
+
+
+
+
 
     @property
     def Number(self):
@@ -92,33 +120,42 @@ class BigNumber(object):
 
         return self
 
-
     def __mul__(self, other):
-        otherNumberReversed = other.Number
-        otherNumberReversed.reverse()
 
-        thisNumber = self.number[:]
+        while (not other.IsZero()):
+            self += self
+            other.DecreaseOne()
 
-        index1 = 0
-        index2 = 0
-        while True:
-            while True:
-                if thisNumber[-1] == 0 and otherNumberReversed[-1] == 0:
-                    break
-                if (index == len(thisNumber)):
-                    thisNumber.append(0)
-                if (index+1 == len(otherNumberReversed)):
-                    otherNumberReversed.append(0)
-
-                currVal = thisNumber[index1] * otherNumberReversed[index2]
-                otherNumberReversed[index+1] += (currVal) / self.base
-                thisNumber[index] = (currVal) % self.base
+        return self
             
-                index2 += 1
-            index1 += 1
+
+
+    #def __mul__(self, other):
+    #    otherNumberReversed = other.Number
+    #    otherNumberReversed.reverse()
+
+    #    thisNumber = self.number[:]
+
+    #    index1 = 0
+    #    index2 = 0
+    #    while True:
+    #        while True:
+    #            if thisNumber[-1] == 0 and otherNumberReversed[-1] == 0:
+    #                break
+    #            if (index == len(thisNumber)):
+    #                thisNumber.append(0)
+    #            if (index+1 == len(otherNumberReversed)):
+    #                otherNumberReversed.append(0)
+
+    #            currVal = thisNumber[index1] * otherNumberReversed[index2]
+    #            otherNumberReversed[index+1] += (currVal) / self.base
+    #            thisNumber[index] = (currVal) % self.base
+            
+    #            index2 += 1
+    #        index1 += 1
 
 
 
-        thisNumber.reverse()
-        return BigNumber(thisNumber)
+    #    thisNumber.reverse()
+    #    return BigNumber(thisNumber)
 
