@@ -1,70 +1,76 @@
+class BinTriagle:
+    row = 0
+    col = 0
+    size = 0
 
-class BinTree:
-    def __init__(self):
-        self.value = None
-        self.left = None
-        self.right = None
+    def __init__(self, path):
+        self.Arrays = self.GetInput(path)
+        self.size = len(self.Arrays)
 
-    def __init__(self, startValue):
-        self.value = startValue
-        self.left = None
-        self.right = None
+    #[linha][coluna]
+    def GetInput(self, path):
+        numArr = []
+        inputStr = file(path).read()
+        lines = inputStr.splitlines()        
+        for line in lines:
+            numsStr = line.split(" ")
+            tempArr = []
+            for numStr in numsStr:
+                tempArr.append(int(numStr))
+            numArr.append(tempArr)
+        return numArr
 
-    def __str__(self):
-        retVal = str(self.value)
-        l = self.GetLeft()
-        r = self.GetRight()
+    def Print(self):
+        for line in self.Arrays:
+            printArray = ""
+            for element in line:
+                printArray += str(element) + " "
+            print printArray
 
-        if (l):
-            retVal += str(l)
-        else:
-            retVal += "0"
+    def InsideBoundaries(self):
+        return self.row < self.size and self.col < self.size
 
-        retVal += " "
-
-        if (r):
-            retVal += str(r)
-        else:
-            retVal += "0"
-
-        retVal += "\n"
-
-        return retVal
-
-
-    def GetValue(self):
-        return self.value
-
-    def SetValue(self, newValue):
-        self.value = newValue
-
-    def SetLeft(self, newLeft):
-        self.left = newLeft
-
-    def SetRight(self, newRight):
-        self.right = newRight
+    def getSelf(self):
+        if (self.InsideBoundaries()):
+            return self.Arrays[self.row][self.col]
+        return 0
 
     def GetLeft(self):
-        return self.left 
+        self.row += 1        
+        if (self.InsideBoundaries()):
+            return self.Arrays[self.row][self.col]
+        return 0      
 
     def GetRight(self):
-        return self.right 
+        self.row += 1
+        self.col += 1
+        if (self.InsideBoundaries()):
+            return self.Arrays[self.row][self.col]
+        return 0
 
 
 
 
 
 
-aaa = BinTree(3)
-bbb = BinTree(5)
-ccc = BinTree(6)
-aaa.SetLeft(bbb)
-aaa.SetRight(ccc)
+bt = BinTriagle("input/input18.1.txt")
+bt.Print()
+
+print bt.getSelf()
+print bt.GetLeft()
+print bt.GetRight()
+print bt.GetRight()
+print bt.GetRight()
+print bt.GetRight()
 
 
 
+#numberOfLines = len(inputArrays)
 
-print aaa
+#for lineNumber in xrange(0,numberOfLines):
+#    print inputArrays[lineNumber]
+
+
 
 
 

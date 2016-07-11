@@ -85,6 +85,8 @@
     <Content Include="input\input11.1.txt" />
     <Content Include="input\input11.txt" />
     <Content Include="input\input13.txt" />
+    <Content Include="input\input18.1.txt" />
+    <Content Include="input\input18.2.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="input\" />
