@@ -3,7 +3,7 @@ from module18 import *
 
 
 
-bt = BinTriagle("input/input18.2.txt")
+bt = BinTriagle("input/input67.txt")
 bt.Print()
 
 node0 = BinTreeNode()
