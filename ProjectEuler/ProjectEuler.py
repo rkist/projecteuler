@@ -4,13 +4,17 @@ from module18 import *
 
 
 bt = BinTriagle("input/input67.txt")
-bt.Print()
+#bt.Print()
+
+zt = BinTriagle("input/input67.txt")
+zt.Nullufy()
+#zt.Print()
 
 node0 = BinTreeNode()
-#node0.col = 2
-#node0.row = 2
 
-aaa = Recursion(bt, node0)
+aaa = Recursion(bt, zt, node0)
+
+#zt.Print()
 
 print aaa
 

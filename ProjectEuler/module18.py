@@ -29,6 +29,15 @@ class BinTriagle:
         self.Arrays = self.GetInput(path)
         self.size = len(self.Arrays)
 
+    def Nullufy(self):
+        node = BinTreeNode()
+        for line in self.Arrays:
+            for element in line:
+                self.Arrays[node.row][node.col] = 0
+                node.col += 1
+            node.row += 1
+            node.col = 0
+
     #[linha][coluna]
     def GetInput(self, path):
         numArr = []
@@ -57,10 +66,20 @@ class BinTriagle:
             return self.Arrays[node.row][node.col]
         return 0
 
+    def SetValue(self, node, val):
+        if (self.IsNodeBoundaries(node)):
+            self.Arrays[node.row][node.col] = val
 
 
 
-def Recursion(bt, node):
+
+
+
+def Recursion(bt, zt, node):
+    val = zt.GetValue(node)
+    if (val > 0):
+        return val
+
     val = bt.GetValue(node)
     if (val == 0):
         return val
@@ -68,13 +87,15 @@ def Recursion(bt, node):
     leftNode = node.GetLeftSon()
     rightNode = node.GetRightSon()
 
-    leftVal = Recursion(bt,leftNode)
-    rightVal = Recursion(bt,rightNode)
+    leftVal = Recursion(bt, zt, leftNode)
+    rightVal = Recursion(bt, zt, rightNode)
 
     if (leftVal < rightVal):
         retVal = val + rightVal
     else:        
         retVal = val + leftVal
+
+    zt.SetValue(node, retVal)
 
     #print str(node.row) + "," + str(node.col) + ": " + str(retVal)
     return retVal
