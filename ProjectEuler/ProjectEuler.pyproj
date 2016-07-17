@@ -28,6 +28,9 @@
     <Compile Include="module1.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module10.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="module11.py" />
     <Compile Include="module12.py">
       <SubType>Code</SubType>
@@ -48,6 +51,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="module18.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="module19.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="module2.py">
