@@ -25,7 +25,7 @@
     <Compile Include="bignumber.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module1.py">
+    <Compile Include="module01.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="module10.py">
@@ -56,29 +56,32 @@
     <Compile Include="module19.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module2.py">
+    <Compile Include="module02.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="module20.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module3.py" />
-    <Compile Include="module4.py">
+    <Compile Include="module03.py" />
+    <Compile Include="module04.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module5.py">
+    <Compile Include="module21.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module6.py">
+    <Compile Include="module05.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module7.py">
+    <Compile Include="module06.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module8.py">
+    <Compile Include="module07.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module9.py">
+    <Compile Include="module08.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="module09.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProjectEuler.py" />
