@@ -1,9 +1,10 @@
-from module21 import *
+
+    
 
 
 
 
-SolveEx21()
+
 
 
 
