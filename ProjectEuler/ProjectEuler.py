@@ -1,4 +1,6 @@
+from module24 import *
 
+SolveEx24()
     
 
 
