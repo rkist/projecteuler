@@ -1,6 +1,6 @@
-from module24 import *
+from module25 import *
 
-SolveEx24()
+SolveEx25()
     
 
 
