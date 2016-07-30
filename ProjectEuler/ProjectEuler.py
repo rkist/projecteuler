@@ -1,6 +1,6 @@
-from module25 import *
+from module26 import *
 
-SolveEx25()
+SolveProblem()
     
 
 

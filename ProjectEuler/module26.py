@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
+
+def SolveProblem():
+    print "ok"

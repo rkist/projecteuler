@@ -1,19 +1,20 @@
 
 fibonacciArray = [1,1,2,3]
 def Fibonacci(n): 
-    index = n-1
-    if (index < len(fibonacciArray)):
-        return fibonacciArray[index]
+    nMinusOne = n-1
+    if (nMinusOne < len(fibonacciArray)):
+        return fibonacciArray[nMinusOne]
 
-    fibonacciArray.append(Fibonacci(n-1) + Fibonacci(n-2))
-    return fibonacciArray[index]
+    fibonacciArray.append(Fibonacci(nMinusOne) + Fibonacci(nMinusOne-1))
+    return fibonacciArray[nMinusOne]
 
 
-def SolveEx25():
+def SolveProblem():
     n = 1
     while(True):
         f = Fibonacci(n)
         if (len(str(f)) == 1000):
             print n
+            return
         n+=1
 
