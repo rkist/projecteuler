@@ -1,7 +1,18 @@
-import module3
+import math
+
+def GetDivisorsArrayOpt(value):
+    arr = []
+    for divisor in range(2,int(math.sqrt(value) + 1)+1):
+        if value % divisor == 0:
+            arr.append(divisor)
+
+    return arr
 
 def IsPrime(value):
-    divisors = module3.GetDivisors(value)
+    if (value < 0):
+        return False
+
+    divisors = GetDivisorsArrayOpt(value)
     if len(divisors) == 0:
         return True
     return False
