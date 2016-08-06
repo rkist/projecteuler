@@ -44,34 +44,6 @@ def FindNumberOfTimesSubstringRepeatsItselfInsideString(subString, string):
     return repetitionsCounter
 
 
-def FindBiggestRepeatedSubString(str): #not working
-    result = ""
-    for i in range(0,len(str)):
-        for j in range(i+1,len(str)):
-            subStr = str[i:j]
-            if(HasSubString(subStr, str)):
-                if (len(subStr) > len(result)):
-                    result = subStr
-    return result
-
-def AAA(str): #not working
-    result = ""
-    biggestSubStrSize = 0
-    biggestNumberOfRepetitionsOfSubStr = 0
-    for i in range(0,len(str)):
-        for j in range(i+1,len(str)):
-            subStr = str[i:j]
-            numRep = FindNumberOfTimesSubstringRepeatsItselfInsideString(subStr, str)
-            resLen = len(subStr)
-            if (numRep > 2  and biggestSubStrSize <= resLen):
-                biggestNumberOfRepetitionsOfSubStr = numRep
-                biggestSubStrSize = resLen
-                result = subStr
-    return result
-
-
-
-
 def YieldDivisionResult(denominator):    
     rest = 1
     while (rest != 0):
