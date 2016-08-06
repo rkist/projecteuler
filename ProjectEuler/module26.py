@@ -71,19 +71,73 @@ def AAA(str): #not working
 
 
 
+
+def YieldDivisionResult(denominator):    
+    rest = 1
+    while (rest != 0):
+        rest *= 10
+        result = rest / denominator
+        rest = rest % denominator
+        yield result
+
+
+def GetDivisionResultArray(denominator, size):
+    resultArray = []
+    for i in YieldDivisionResult(denominator):
+        resultArray.append(i)
+        resultArraySize = len(resultArray)
+
+        if (resultArraySize == size):
+            break
+    return resultArray
+
+    
+def Repeats(arr, start1, start2):
+    k = 0
+    limit = start2 - start1
+
+    if (start2 + limit > len(arr)):
+        return False
+    
+    while(k < limit):
+        pos1 = start1 + k
+        pos2 = start2 + k
+        if (arr[pos1] != arr[pos2]):
+            return False
+        k += 1
+    return True
+
+
+def GetSmallestSequence(arr):
+    for i in range(0, len(arr)):
+        for j in range(i+1, len(arr)):
+            size = j-i
+
+            if (Repeats(arr, i, j) and Repeats(arr, i, j + size)):
+               return size
+    return 0
+
+
 def SolveProblem():
 
-    wString = "1428571428571428571428571429"
-    subString = "142857"
-    print FindNumberOfTimesSubstringRepeatsItselfInsideString(subString, wString)
+    numbers = range(2,1000)
 
-    numbers = range(2,10)
+    biggestSize = 0
+    biggestNum = 0
 
     for num in numbers:
-        numStr = GetStringOfTheDivisionByOneInTenBase(num)
-        cleanNumStr = CleanString(numStr)
-        result = AAA(cleanNumStr)
-        print numStr + " " + cleanNumStr + " " + result
+        arr = GetDivisionResultArray(num,10000)
+        size = GetSmallestSequence(arr)
+        
+        if (size > biggestSize):
+            biggestSize = size
+            biggestNum = num
+            
+        print str(num) + " " + str(size)
+
+    print str(biggestNum) + " " + str(biggestSize)
+
+
 
     
 
