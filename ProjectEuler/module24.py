@@ -22,7 +22,7 @@ def PermuteRecursion(index, stringToAdd, stringToRemove, permutations):
         PermuteRecursion(i, newStringToAdd, newStringToRemove, permutations)
 
 
-def SolveEx24():
+def SolveProblem():
 
     str = "0123456789"
 
