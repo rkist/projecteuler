@@ -1,4 +1,4 @@
-from module31 import *
+from module32 import *
 
 SolveProblem()
     
