@@ -120,6 +120,9 @@
     <Compile Include="module33.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module34.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ProjectEuler.py" />
     <Compile Include="pynum2word\num2word.py" />
     <Compile Include="pynum2word\num2word_base.py" />
