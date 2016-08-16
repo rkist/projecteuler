@@ -1,4 +1,4 @@
-def ConvertIntArrayToInt(numList):     # [1,2,3]
+def ConvertIntArrayToInt(numList):       # [1,2,3]
     s = map(str, numList)                # ['1','2','3']
     s = ''.join(s)                       # '123'
     s = int(s)                           # 123
