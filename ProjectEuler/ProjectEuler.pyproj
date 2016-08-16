@@ -28,6 +28,7 @@
     <Compile Include="bignumber.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module35.py" />
     <Compile Include="module00.py">
       <SubType>Code</SubType>
     </Compile>
@@ -127,6 +128,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="module34.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NumericalHelpers.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProjectEuler.py" />
