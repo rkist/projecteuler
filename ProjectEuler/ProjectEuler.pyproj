@@ -22,7 +22,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ArrayHelpers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="bignumber.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="module00.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="module01.py">
