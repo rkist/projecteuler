@@ -1,6 +1,3 @@
-
-
-
 def IsPalindrome(number):
     numStr = str(number)
     for index in range(0,len(numStr)/2):

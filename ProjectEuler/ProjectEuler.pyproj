@@ -28,6 +28,8 @@
     <Compile Include="bignumber.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module37.py" />
+    <Compile Include="module36.py" />
     <Compile Include="module35.py" />
     <Compile Include="module00.py">
       <SubType>Code</SubType>

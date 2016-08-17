@@ -1,16 +1,24 @@
-def ConvertIntArrayToInt(numList):       # [1,2,3]
-    s = map(str, numList)                # ['1','2','3']
-    s = ''.join(s)                       # '123'
-    s = int(s)                           # 123
-    return s
+from math import *
 
-def ConvertIntToIntArray(number):
+def IsPalindrome(arr):
+    for index in range(0,len(arr)/2):
+        if arr[index] != arr[-(index+1)]:
+            return False
+    return True
+
+def ConvertIntArrayToInt(numList, base = 10):
+    tot = 0
+    for num in numList:
+        tot *= base
+        tot += num
+    return tot
+
+def ConvertIntToIntArray(number, base = 10):
     arr = []  
     while (number > 0):
-       rest = number % 10
+       rest = number % base
        arr.append(rest)
-       number = number / 10
-
+       number = number / base
     arr.reverse()
     return arr
 

@@ -20,12 +20,6 @@ def GenerateRotations(num):
 
     return resArr
 
-
-
-
-
-
-
 def SolveProblem():
     results = []
 
