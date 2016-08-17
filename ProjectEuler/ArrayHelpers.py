@@ -1,5 +1,11 @@
 from math import *
 
+def SumArray(arr):
+    sum = 0
+    for num in arr:
+        sum += num
+    return sum
+
 def IsPalindrome(arr):
     for index in range(0,len(arr)/2):
         if arr[index] != arr[-(index+1)]:
