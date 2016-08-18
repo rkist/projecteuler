@@ -1,5 +1,5 @@
 import time
-from module38 import *
+from module39 import SolveProblem
 
 
     
@@ -10,7 +10,7 @@ result = SolveProblem()
 
 
 print("Time:   %ss" % (time.time() - start))
-print("Result: %d" % (result))
+print("Result: " + str(result))
     
 
 

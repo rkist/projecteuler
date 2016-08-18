@@ -11,7 +11,7 @@ def IsTruncablePrime(num):
         arrRight = numArr[:-i]
         numLeft = ConvertIntArrayToInt(arrLeft)
         numRight = ConvertIntArrayToInt(arrRight)
-        if (not IsPrime(numLeft) or not  IsPrime(numRight)):
+        if (not IsPrimeEXP(numLeft) or not  IsPrimeEXP(numRight)):
             return False
     return True
 
@@ -29,7 +29,7 @@ def SolveProblem():
             numSet.add(num)
         num += 1
     
-    print SumArray(numSet)
+    return SumArray(numSet)
 
 
 
