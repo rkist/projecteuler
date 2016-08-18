@@ -6,4 +6,4 @@ from NumericalHelpers import *
 
 
 def SolveProblem():
-    pass
+    return 0
