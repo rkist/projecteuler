@@ -28,6 +28,7 @@
     <Compile Include="bignumber.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module42.py" />
     <Compile Include="module41.py" />
     <Compile Include="module40.py" />
     <Compile Include="module39.py" />
@@ -158,6 +159,7 @@
     <Content Include="input\input18.1.txt" />
     <Content Include="input\input18.2.txt" />
     <Content Include="input\input22.txt" />
+    <Content Include="input\input42.txt" />
     <Content Include="input\input67.txt" />
   </ItemGroup>
   <ItemGroup>
