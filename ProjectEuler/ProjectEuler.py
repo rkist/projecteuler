@@ -1,15 +1,14 @@
 import time
-from module39 import SolveProblem
+from module40 import SolveProblem
 
 
     
 start = time.time()
-
-
 result = SolveProblem()
+finish = time.time()
 
 
-print("Time:   %ss" % (time.time() - start))
+print("Time:   %ss" % (finish - start))
 print("Result: " + str(result))
     
 
