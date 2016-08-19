@@ -28,6 +28,13 @@ def Fibonacci(n):
     fibonacciArray.append(Fibonacci(nMinusOne) + Fibonacci(nMinusOne-1))
     return fibonacciArray[nMinusOne]
 
+def TriangleNumber(n):
+    res = (n * (n + 1)) / 2
+    return res
+
+def PentagonNumber(n):
+    res = (n * (3*n - 1)) / 2
+    return res
 
 
 

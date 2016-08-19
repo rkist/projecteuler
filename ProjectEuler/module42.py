@@ -10,10 +10,6 @@ def GetNameValue(name):
         sum += ord(ch) - (ord('a') - 1)
     return sum
 
-def TriangleNumber(n):
-    res = (n * (n + 1)) / 2
-    return res
-
 
 def SolveProblem():
     names = ReadAndCleanTextInput("input/input42.txt")
