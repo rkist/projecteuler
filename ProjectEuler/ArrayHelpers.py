@@ -28,6 +28,13 @@ def ConvertIntToIntArray(number, base = 10):
     arr.reverse()
     return arr
 
+def GetNameValue(name):
+    sum = 0
+    for ch in name:
+        ch = ch.lower()
+        sum += ord(ch) - (ord('a') - 1)
+    return sum
+
 def Permute(array):
     arrayToAdd = []
     arrayToRemove = array
