@@ -36,7 +36,9 @@ def PentagonNumber(n):
     res = (n * (3*n - 1)) / 2
     return res
 
-
+def HexagonNumber(n):
+    res = n * ((2 * n) - 1)
+    return res
 
 #EXPERIMENTAL
 def Factor(n):

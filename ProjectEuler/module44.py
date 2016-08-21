@@ -28,7 +28,7 @@ def SatisfyWeirdProperty(num1, num2):
     return satsDiff and satsSum
 
 def ParalelProcess(j):
-    for k in range(j,200 + j*2):
+    for k in range(j,200 + 2*j):
         #print str(j) + "," + str(k)
         if (SatisfyWeirdProperty(j, k)):
             pj = PentagonNumber(j)
@@ -39,23 +39,25 @@ def ParalelProcess(j):
 
 def SolveProblem():
 
-    #num_cores = multiprocessing.cpu_count()   
-    #results = Parallel(n_jobs=num_cores)(delayed(ParalelProcess)(j) for j in range(1,1000))
+    num_cores = multiprocessing.cpu_count()   
+    results = Parallel(n_jobs=num_cores)(delayed(ParalelProcess)(j) for j in range(1,2000))
 
-    #for res in results:
-    #    if (res != 0):
-    #        return res
+    for res in results:
+        if (res != 0):
+            return res
+
+    return -1
 
 
 
-    pj = 0
-    pk = 0
+    #pj = 0
+    #pk = 0
 
-    for j in range(1, 2000):
-        for k in range(j, 200 + 3*j):
-            print str(j) + "," + str(k)
-            if (SatisfyWeirdProperty(j, k)):
-                pj = PentagonNumber(j)
-                pk = PentagonNumber(k)
-                return abs(pk - pj)
-    return 0
+    #for j in range(1, 2000):
+    #    for k in range(j, 2000):
+    #        #print str(j) + "," + str(k)
+    #        if (SatisfyWeirdProperty(j, k)):
+    #            pj = PentagonNumber(j)
+    #            pk = PentagonNumber(k)
+    #            return abs(pk - pj)
+    #return 0
