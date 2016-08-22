@@ -18,6 +18,17 @@ def IsPrime(value):
 def Factorial(num):
     return factorial(num)
 
+def IntSqrt(n): #Root Square of Integer, -1 if not Integer result
+    x = n
+    y = (x + 1) // 2
+    while y < x:
+        x = y
+        y = (x + n // x) // 2
+    if (x*x == n):
+        return x
+    else:
+        return -1
+
 
 fibonacciArray = [1,1,2,3]
 def Fibonacci(n): 
