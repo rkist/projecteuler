@@ -40,6 +40,9 @@ def HexagonNumber(n):
     res = n * ((2 * n) - 1)
     return res
 
+
+
+
 #EXPERIMENTAL
 def Factor(n):
     step = lambda x: 1 + (x<<2) - ((x>>1)<<1)

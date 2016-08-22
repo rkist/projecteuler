@@ -35,6 +35,35 @@ def GetNameValue(name):
         sum += ord(ch) - (ord('a') - 1)
     return sum
 
+
+
+
+def IsInArray(array, value):
+    return SearchArray(array, value) >= 0
+
+def SearchArray(array, value):
+    beg = 0
+    end = len(array)
+    return SearchArrayRecursion(array, value, beg, end)
+
+def SearchArrayRecursion(array, value, beg, end):
+    halfDiff = (end - beg) / 2
+    if (halfDiff == 0):
+        return -1
+
+    mid = beg + halfDiff
+    midVal = array[mid]
+
+    if (value == midVal):
+        return mid
+    elif (value < midVal):
+        return SearchArrayRecursion(array, value, beg, mid)
+    else:
+        return SearchArrayRecursion(array, value, mid, end)
+
+
+
+
 def Permute(array):
     arrayToAdd = []
     arrayToRemove = array
