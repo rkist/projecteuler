@@ -31,6 +31,7 @@
     <Compile Include="FileHelpers.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module46.py" />
     <Compile Include="module45.py" />
     <Compile Include="module44.py" />
     <Compile Include="module43.py" />
@@ -144,6 +145,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="NumericalHelpers.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parallel.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProjectEuler.py" />
