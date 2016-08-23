@@ -64,28 +64,30 @@ def SearchArrayRecursion(array, value, beg, end):
 
 #TODO: combination
 
-#TODO: permute with limited lenght
 
-def Permute(array): #Permutes just for elements with all elements
+
+def Permute(array, permutationSize = 0):
+    if (permutationSize == 0):
+        permutationSize = len(array)
     arrayToAdd = []
     arrayToRemove = array
     permutations = []
     for i in range(0,len(arrayToRemove)):
-        _PermuteRecursion_(i, arrayToAdd, arrayToRemove, permutations)
+        _PermuteRecursion_(i, arrayToAdd, arrayToRemove, permutations, permutationSize)
 
     return permutations
 
 
-def _PermuteRecursion_(index, arrayToAdd, arrayToRemove, permutations):
+def _PermuteRecursion_(index, arrayToAdd, arrayToRemove, permutations, permutationSize):
     newArrayToAdd = arrayToAdd + [arrayToRemove[index]]
     newArrayToRemove = arrayToRemove[:index] + arrayToRemove[index+1:]
 
-    if (len(newArrayToRemove) == 0):
+    if (len(newArrayToAdd) == permutationSize):
         permutations.append(newArrayToAdd)
         return
 
     for i in range(0,len(newArrayToRemove)):
-        _PermuteRecursion_(i, newArrayToAdd, newArrayToRemove, permutations)
+        _PermuteRecursion_(i, newArrayToAdd, newArrayToRemove, permutations, permutationSize)
 
 
 def RemoveDuplicatedItemsFromArray(array):
