@@ -7,10 +7,5 @@ from Parallel import *
 
 
 def SolveProblem():
-    sum = 0
-    for n in range(1,1000 + 1):
-        sum += n**n
-
-    intSumStr = str(int(sum))
-    
-    return intSumStr[-10:]
+   
+    return -1
