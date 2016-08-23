@@ -51,10 +51,6 @@ def HexagonNumber(n):
     res = n * ((2 * n) - 1)
     return res
 
-
-
-
-#EXPERIMENTAL
 def Factor(n):
     step = lambda x: 1 + (x<<2) - ((x>>1)<<1)
     maxq = long(floor(sqrt(n)))
@@ -64,6 +60,9 @@ def Factor(n):
         q = step(d)
         d += 1
     return q <= maxq and [q] + Factor(n//q) or [n]
+
+
+#EXPERIMENTAL
 
 def IsPrimeEXP(n):
     if (n < 2):
