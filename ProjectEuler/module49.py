@@ -4,11 +4,51 @@ from FileHelpers import *
 from Parallel import *
 
 
+def ArePermutations(nums):
+    numsAlgs = []
+    for num in nums:
+        numsAlgs.append(ConvertIntToIntArray(num))
+    
+    comparer = sorted(numsAlgs[0])
+
+    for numAlgs in numsAlgs:
+        if (comparer != sorted(numAlgs)):
+            return False
+    return True
+
+
+
+
+
 
 
 def SolveProblem():
-   arr = [1,2,3,4,5,6,7,8,9]
-   perm = Permute(arr, 4)
+    print "."
 
-   
-   return perm
+    arr = []
+    for n in range(1000,9999+1):
+       if (IsPrime(n)):
+           arr.append(n)
+
+    print "."
+
+    arrSecondFilter = []
+    arrLen = len(arr)
+    for i in range(0, arrLen-2):
+        for j in range(i+1, arrLen-1):
+            t1 = arr[i]
+            t2 = arr[j]
+            diff = t2 - t1
+            possibleNext = t2 + diff
+            if (IsInArray(arr, possibleNext)):
+                arrSecondFilter += [(t1, t2, possibleNext)]
+
+    print "."
+    
+    arrThirdFilter = []
+    for item in arrSecondFilter:
+        if (ArePermutations(item)):
+            print item
+            arrThirdFilter.append(item)
+
+    return arrThirdFilter

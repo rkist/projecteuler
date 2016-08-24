@@ -63,6 +63,8 @@ def SearchArrayRecursion(array, value, beg, end):
 
 
 #TODO: combination
+def Combination(array):
+    pass
 
 
 
