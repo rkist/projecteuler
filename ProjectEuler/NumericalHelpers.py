@@ -1,5 +1,13 @@
 from math import *
 
+def GetPrimesInRange(range):
+    primes = []
+    for i in range:
+        if (IsPrime(i)):
+            primes.append(i)
+
+    return primes 
+
 def GetDivisorsArray(value):
     arr = []
     for divisor in range(2,int(sqrt(value) + 1)+1):
