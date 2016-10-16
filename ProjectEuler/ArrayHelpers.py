@@ -68,7 +68,7 @@ def Combination(array):
 
 
 
-def Permute(array, permutationSize = 0):
+def Permute(array, permutationSize = 0): #Arranjo
     if (permutationSize == 0):
         permutationSize = len(array)
     arrayToAdd = []
