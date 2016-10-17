@@ -4,25 +4,12 @@ from FileHelpers import *
 from Parallel import *
 
 
-def FilterCommonTerms(arr1, arr2):
-    commArr = []
-    length = len(arr1)
-    for i in range(length):
-        if (arr1[i] == arr2[i]):
-            commArr.append(arr1[i])
-        else:
-            commArr.append(-1)
-    return commArr
-
 def Diff(arr1, arr2, expDiff):
-    eq = 0
     diffArr1 = []
     diffArr2 = []
     length = len(arr1)
     for i in range(length):
-        if arr1[i] == arr2[i]:
-            eq+=1
-        else:
+        if arr1[i] != arr2[i]:
             diffArr1.append(arr1[i])
             diffArr2.append(arr2[i])
             if (len(diffArr1) <= expDiff):
@@ -40,80 +27,88 @@ def Diff(arr1, arr2, expDiff):
 
     return (len(diffArr1) == expDiff)
 
-def Filter(arr, primeArrays, expDiff):
+def FilterPerResemblance(arr, primeArrays, expDiff):
     res = []
     for prime in primeArrays:
         if (Diff(arr, prime, expDiff)):
             res.append(prime)
-    return res
+    return [arr] + res
+
+def Classify(alike):
+    d = dict()
+    alikeLen = len(alike)
+    firstArr = alike[0]
+    firstArrLen = len(firstArr)
+
+    for i in range(1, alikeLen):
+        arr = alike[i]
+        diffPos = []
+        for j in range(firstArrLen):
+            if firstArr[j] != arr[j]:
+                diffPos.append(j)
+        diffPosInt = ConvertIntArrayToInt(diffPos)
+        if (diffPosInt not in d):
+            d[diffPosInt] = [firstArr] + [arr]
+        else:
+            d[diffPosInt] += [arr]             
+
+    return d
+
+def Solve(primeArrays, diff, numOfNum, result):
+    primeArraysLen = len(primeArrays)
+    for i in range(primeArraysLen):
+        alike = FilterPerResemblance(primeArrays[i], primeArrays[i:], diff)
+        alikeLen = len(alike)
+        if (alikeLen >= numOfNum):
+            #print "(" + str(alikeLen) + ") => " + str(alike)
+            d = Classify(alike)
+            for k, v in d.iteritems():
+                vLen = len(v)
+                if (vLen >= numOfNum-1):
+                    print "(" + str(vLen) + ") => " + str(v)
+                    if (vLen >= numOfNum):
+                        result.put((ConvertIntArrayToInt(v[0]), vLen, v))
 
 
 
 
 def SolveProblem():
     print "."   
-    primes = GetPrimesInRange(range(10**4,10**5))
+
+    numOfDigits = 5
+    primes = GetPrimesInRange(range(10**(numOfDigits-1),10**numOfDigits))
 
     print "."   
+
     primeArrays = []
     for item in primes:
         a = ConvertIntToIntArray(item)
         primeArrays.append(a)
-    primeArraysLen = len(primeArrays)
+    
 
     print "." 
 
-    for prime in primeArrays:
-        alike = Filter(prime, primeArrays, 2)
-        alikeLen = len(alike)
-        print alikeLen
-        if (alikeLen >= 6):
-            print alike
-        
+    resultQueue = Queue()
+
+    t1 = Process(target=Solve, args=(primeArrays, 2, 7, resultQueue))
+    t1.start()
+
+    t2 = Process(target=Solve, args=(primeArrays, 3, 7, resultQueue))
+    t2.start()
+
+    t3 = Process(target=Solve, args=(primeArrays, 4, 7, resultQueue))
+    t3.start()
+
+    t1.join()
+    t2.join()
+    t3.join()
+
+    result_list = []
+    while not resultQueue.empty():
+        result_list.append(resultQueue.get())
 
 
 
+    print "." 
 
-
-    
-
-    
-    #affinityMatrix = [[[] for x in range(primeArraysLen)] for y in range(primeArraysLen)] 
-    #for i in range(primeArraysLen):
-    #    for j in range(primeArraysLen):
-                                                                                                                                                                                                                                                                                                          
-            #affinityMatrix[i][j] = FilterCommonTerms(primeArrays[i], primeArrays[j])
-    
-    print "."   
-
-    
-
-    #dicArr = []
-    #for i in range(primeArraysLen):
-    #    dic = {}
-    #    for j in range(primeArraysLen):
-    #        kl = affinityMatrix[i][j]
-    #        k = str(kl)
-    #        if IsValidAffinity(kl):
-    #            if dic.has_key(k):
-    #                a,b = dic[k]
-    #                dic[k] = (a,b+1)
-    #            else:
-    #                dic.update({k : (kl, 0)})       
-    #    dicArr.append(dic)
-
-    #max = 0
-    #itemMax = (0,0)
-    #for d in dicArr:
-    #    for k, v in d.items():
-    #        a,b = v
-    #        if (b > max):
-    #            max = b
-    #            itemMax = v
-
-    #print itemMax
-    
-
-
-
-    return -1
+    return result_list
