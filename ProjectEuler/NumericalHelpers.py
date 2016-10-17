@@ -26,6 +26,9 @@ def IsPrime(value):
 def Factorial(num):
     return factorial(num)
 
+def C(n,r):
+    return Factorial(n)/(Factorial(r) * Factorial(n-r))
+
 def IntSqrt(n): #Root Square of Integer, -1 if not Integer result
     x = n
     y = (x + 1) // 2
