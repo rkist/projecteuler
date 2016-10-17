@@ -75,7 +75,7 @@ def Solve(primeArrays, diff, numOfNum, result):
 def SolveProblem():
     print "."   
 
-    numOfDigits = 5
+    numOfDigits = 6
     primes = GetPrimesInRange(range(10**(numOfDigits-1),10**numOfDigits))
 
     print "."   
@@ -90,14 +90,17 @@ def SolveProblem():
 
     resultQueue = Queue()
 
-    t1 = Process(target=Solve, args=(primeArrays, 2, 7, resultQueue))
+    t1 = Process(target=Solve, args=(primeArrays, 2, 8, resultQueue))
     t1.start()
 
-    t2 = Process(target=Solve, args=(primeArrays, 3, 7, resultQueue))
+    t2 = Process(target=Solve, args=(primeArrays, 3, 8, resultQueue))
     t2.start()
 
-    t3 = Process(target=Solve, args=(primeArrays, 4, 7, resultQueue))
+    t3 = Process(target=Solve, args=(primeArrays, 4, 8, resultQueue))
     t3.start()
+
+    t4 = Process(target=Solve, args=(primeArrays, 5, 8, resultQueue))
+    t4.start()
 
     t1.join()
     t2.join()
