@@ -88,7 +88,7 @@ class Hand:
                 return False
         return True
 
-    def _rankRoyalFlush(self): #todo
+    def _rankRoyalFlush(self):
         if (not self._sameSuit(self.Cards)):
             return False
         for i in range(len(self.Cards)):
@@ -97,10 +97,14 @@ class Hand:
                 return False
         return True
 
+    def _rankStraightFlush(self): #todo
+        return False
 
     def Rank(self): #todo
         if (self._rankRoyalFlush()):
             return Ranks.RoyalFlush
+        if (self._rankStraightFlush()):
+            return Ranks.StraightFlush
         else:
             return Ranks.HighCard
         
