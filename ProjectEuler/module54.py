@@ -33,7 +33,9 @@ class Card:
     def Parse(cls, s):    
         val = s[:-1]
         value = 0
-        if (val == 'J'):
+        if (val == 'T'):
+            value = 10
+        elif (val == 'J'):
             value = 11
         elif (val == 'Q'):
             value = 12
@@ -63,6 +65,7 @@ class Ranks:
 class Hand:
     def __init__(self, cards):
         self.Cards = cards
+        self.Cards.sort()
 
     def __str__(self):
         s = ""
@@ -79,8 +82,28 @@ class Hand:
             cards.append(c)
         return cls(cards)
 
-    def Rank(self):
-        pass
+    def _sameSuit(self, cards):        
+        for i in range(len(cards)-1):
+            if (cards[i].Suit != cards[i+1].Suit):
+                return False
+        return True
+
+    def _rankRoyalFlush(self): #todo
+        if (not self._sameSuit(self.Cards)):
+            return False
+        for i in range(len(self.Cards)):
+            card = self.Cards[i]
+            if (i + 10 != card.Value):
+                return False
+        return True
+
+
+    def Rank(self): #todo
+        if (self._rankRoyalFlush()):
+            return Ranks.RoyalFlush
+        else:
+            return Ranks.HighCard
+        
 
 
 
@@ -89,21 +112,17 @@ class Hand:
 
 def SolveProblem():
     print "."   
-    c = Card(12,'A')
 
-    cc = Card.Parse("QA")
+    h1 = Hand.Parse("5H 5C 6S 7S KD")
+    h2 = Hand.Parse("2C 3S 8S 8D TD")
 
-    print c
-    print cc
+    print h1
+    print h2
 
-    print c == cc
+    print h1.Rank()
+    print h2.Rank()
 
-    h = Hand([c,cc])
-
-    print h
-
-    hh = Hand.Parse("5H 5C 6S 7S KD")
-
-    print hh
+    ht = Hand.Parse("TC JC KC AC QC")
+    print ht.Rank()
 
     return -1
