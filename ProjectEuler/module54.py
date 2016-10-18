@@ -97,14 +97,25 @@ class Hand:
                 return False
         return True
 
-    def _rankStraightFlush(self): #todo
+    def _rankStraightFlush(self):
+        if (not self._sameSuit(self.Cards)):
+            return False
+        for i in range(len(self.Cards)-1):
+            if (self.Cards[i].Value + 1 != self.Cards[i+1].Value):
+                return False
+        return True
+
+    def _rankFourOfKind(self):
         return False
+
 
     def Rank(self): #todo
         if (self._rankRoyalFlush()):
             return Ranks.RoyalFlush
         if (self._rankStraightFlush()):
             return Ranks.StraightFlush
+        if (self._rankFourOfKind()):
+            return Ranks.FourOfKind
         else:
             return Ranks.HighCard
         
@@ -126,7 +137,16 @@ def SolveProblem():
     print h1.Rank()
     print h2.Rank()
 
-    ht = Hand.Parse("TC JC KC AC QC")
+    ht = Hand.Parse("TC JC KC AC QC") #9
+    print ht.Rank()
+
+    ht = Hand.Parse("5C 6C 7C 9C 8C") #8
+    print ht.Rank()
+
+    ht = Hand.Parse("6C 5C 7C 9C 8C") #8
+    print ht.Rank()
+
+    ht = Hand.Parse("6C 5C 7S 9C 8C") #0
     print ht.Rank()
 
     return -1
