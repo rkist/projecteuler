@@ -158,6 +158,9 @@
     <Compile Include="Parallel.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PrimesCache.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ProjectEuler.py" />
     <Compile Include="pynum2word\num2word.py" />
     <Compile Include="pynum2word\num2word_base.py" />
@@ -171,6 +174,7 @@
     <Compile Include="pynum2word\orderedmapping.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cache\primes.20000000.txt" />
     <Content Include="input\input11.1.txt" />
     <Content Include="input\input11.txt" />
     <Content Include="input\input13.txt" />
@@ -182,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="input\" />
+    <Folder Include="cache\" />
     <Folder Include="pynum2word\" />
   </ItemGroup>
   <PropertyGroup>

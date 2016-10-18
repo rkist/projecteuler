@@ -5,7 +5,6 @@ def GetPrimesInRange(range):
     for i in range:
         if (IsPrime(i)):
             primes.append(i)
-
     return primes 
 
 def GetDivisorsArray(value):
