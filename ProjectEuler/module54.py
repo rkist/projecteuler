@@ -16,7 +16,7 @@ class Card:
         return self.Value == other.Value and self.Suit == other.Suit
 
     def __ne__(self, other):
-        return not self == other
+        return (not (self == other))
 
     def __gt__(self, other):
         return self.Value > other.Value
@@ -74,6 +74,24 @@ class Hand:
              s += str(c) + " "
         return s
 
+    def __eq__(self, other):
+        return (self.Cards == other.Cards)            
+
+    def __ne__(self, other):
+        return (not (self == other))
+
+    def __gt__(self, other):
+        if (self.Rank() > other.Rank()):
+            return True
+        #TODO: desempate
+
+        return False
+
+
+    def __lt__(self, other):
+        return (not (self > other))
+
+
     @classmethod
     def Parse(cls, s):    
         cardsStr = s.split(" ")
@@ -82,6 +100,30 @@ class Hand:
             c = Card.Parse(cStr)
             cards.append(c)
         return cls(cards)
+
+    def _countSuits(self):
+        self.suitCounters = {'H' : 0, 'C' : 0, 'D' : 0, 'S' : 0}
+
+        for c in self.Cards:
+            self.suitCounters[c.Suit] += 1
+
+    def _countValues(self):
+        self.valueCounters = {}
+        for v in range(2,14+1):
+            self.valueCounters[v] = 0
+
+        for c in self.Cards:
+            self.valueCounters[c.Value] += 1
+
+    def _countValuesAndSuits(self):
+        self._countSuits()
+        self._countValues()
+
+    def _isSequence(self):
+        for i in range(len(self.Cards)-1):
+            if (self.Cards[i].Value + 1 != self.Cards[i+1].Value):
+                return False
+        return True
 
     def _sameSuit(self, cards):        
         for i in range(len(cards)-1):
@@ -106,19 +148,82 @@ class Hand:
                 return False
         return True
 
-    def _rankFourOfKind(self):
-        suitCounters = {'H' : 0, 'C' : 0, 'D' : 0, 'S' : 0}
+    def _rankFullHouse(self):
+        self._countValues()
 
+        trinca = False
+        dupla = False
+        for k, v in self.valueCounters.iteritems():
+            if (v == 3):
+                trinca = True
+            if (v == 2):
+                dupla = True
+        return dupla and trinca
+
+    def _rankFourOfKind(self):
+        self._countValues()
+
+        for k, v in self.valueCounters.iteritems():
+            if (v == 4):
+                return True
+        return False
+
+    def _rankFlush(self):
+        self._countSuits()
+
+        for k, v in self.suitCounters.iteritems():
+            if (v == 5):
+                return True
+        return False
+
+    def _rankStraight(self):
+        return self._isSequence()
+
+    def _rankThreeOfKind(self):
+        self._countValues()
+
+        for k, v in self.valueCounters.iteritems():
+            if (v == 3):
+                return True
+        return False
+
+    def _rankTwoPairs(self):
+        self._countValues()
+        pairs = 0
+
+        for k, v in self.valueCounters.iteritems():
+            if (v == 2):
+                pairs += 1
+        return pairs == 2
+
+    def _rankOnePair(self):
+        self._countValues()
+
+        for k, v in self.valueCounters.iteritems():
+            if (v == 2):
+                return True
         return False
 
 
-    def Rank(self): #todo
+    def Rank(self): 
         if (self._rankRoyalFlush()):
             return Ranks.RoyalFlush
         if (self._rankStraightFlush()):
             return Ranks.StraightFlush
         if (self._rankFourOfKind()):
             return Ranks.FourOfKind
+        if (self._rankFullHouse()):
+            return Ranks.FullHouse
+        if (self._rankFlush()):
+            return Ranks.Flush
+        if (self._rankStraight()):
+            return Ranks.Straight
+        if (self._rankThreeOfKind()):
+            return Ranks.ThreeOfKind
+        if (self._rankTwoPairs()):
+            return Ranks.TwoPairs
+        if (self._rankOnePair()):
+            return Ranks.OnePair
         else:
             return Ranks.HighCard
         
@@ -149,7 +254,37 @@ def SolveProblem():
     ht = Hand.Parse("6C 5C 7C 9C 8C") #8
     print ht.Rank()
 
-    ht = Hand.Parse("6C 5C 7S 9C 8C") #0
+    ht = Hand.Parse("6C 6S 6D 6H 8C") #7
     print ht.Rank()
+
+    ht = Hand.Parse("6H 6D 6S 8C 8C") #6
+    print ht.Rank()
+
+    ht = Hand.Parse("6C QC 7C KC 8C") #5
+    print ht.Rank()
+
+    ht = Hand.Parse("6C 5H 7C 9D 8C") #4
+    print ht.Rank()
+
+    ht = Hand.Parse("6C 5C 7S 9C 8S") #4
+    print ht.Rank()
+
+    ht = Hand.Parse("6C 5C QS QC QS") #3
+    print ht.Rank()
+
+    ht = Hand.Parse("6C 5C 5S KC KS") #2
+    print ht.Rank()
+
+    ht = Hand.Parse("6C 5C 5S JC KS") #1
+    print ht.Rank()
+
+    ht = Hand.Parse("6C 5C 2S JC KS") #0
+    print ht.Rank()
+
+    print Hand.Parse("TC JC KC AC QC") > Hand.Parse("5C 6C 7C 9C 8C") # True
+
+    print Hand.Parse("6C 5C 5S JC KS") > Hand.Parse("5C 6C 7C 9C 8C") # False
+
+    print Hand.Parse("6C 5C 5S JC KS") < Hand.Parse("6C 5C 5S JC KS") # True
 
     return -1
