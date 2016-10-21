@@ -182,6 +182,7 @@
     <Content Include="input\input18.2.txt" />
     <Content Include="input\input22.txt" />
     <Content Include="input\input42.txt" />
+    <Content Include="input\input54.txt" />
     <Content Include="input\input67.txt" />
   </ItemGroup>
   <ItemGroup>
