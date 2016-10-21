@@ -107,6 +107,8 @@ class Hand:
         return True
 
     def _rankFourOfKind(self):
+        suitCounters = {'H' : 0, 'C' : 0, 'D' : 0, 'S' : 0}
+
         return False
 
 
