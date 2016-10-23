@@ -81,11 +81,48 @@ class Hand:
         return (not (self == other))
 
     def __gt__(self, other):
-        if (self.Rank() > other.Rank()):
+        selfRank = self.Rank()
+        otherRank = other.Rank()
+        if (selfRank > otherRank):
             return True
-        #TODO: desempate
+        elif (selfRank == otherRank):
+            if (selfRank == Ranks.RoyalFlush):
+                print "2 RoyalFlush???"
+            elif (selfRank == Ranks.StraightFlush):
+                return self.Cards[-1].Value > other.Cards[-1].Value
+            elif (selfRank == Ranks.FourOfKind):
+                pass
 
-        return False
+            elif (selfRank == Ranks.FullHouse):
+                pass
+            elif (selfRank == Ranks.Flush):
+                pass
+            elif (selfRank == Ranks.Straight):
+                pass
+            elif (selfRank == Ranks.ThreeOfKind):
+                pass
+            elif (selfRank == Ranks.TwoPairs):
+                pass
+            elif (selfRank == Ranks.OnePair):
+                selfFirstValue = 0
+                for card, count in self.valueCounters.iteritems():
+                    if (count == 2):
+                        selfFirstValue = card
+                otherFirstValue = 0
+                for card, count in other.valueCounters.iteritems():
+                    if (count == 2):
+                        otherFirstValue = card
+                if (selfFirstValue == otherFirstValue):
+                    self.Cards[-1] > other.Cards[-1]
+                return selfFirstValue > otherFirstValue                              
+            elif (selfRank == Ranks.HighCard):
+                return self.Cards[-1] > other.Cards[-1]
+            else:
+                print "Error: invalid something"
+
+
+        else:
+           return False
 
 
     def __lt__(self, other):
@@ -253,61 +290,7 @@ def CompareHands(string):
 def SolveProblem():
     print "."   
 
-    #h1 = Hand.Parse("5H 5C 6S 7S KD")
-    #h2 = Hand.Parse("2C 3S 8S 8D TD")
-
-    #print h1
-    #print h2
-
-    #print h1.Rank()
-    #print h2.Rank()
-
-    #ht = Hand.Parse("TC JC KC AC QC") #9
-    #print ht.Rank()
-
-    #ht = Hand.Parse("5C 6C 7C 9C 8C") #8
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6C 5C 7C 9C 8C") #8
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6C 6S 6D 6H 8C") #7
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6H 6D 6S 8C 8C") #6
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6C QC 7C KC 8C") #5
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6C 5H 7C 9D 8C") #4
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6C 5C 7S 9C 8S") #4
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6C 5C QS QC QS") #3
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6C 5C 5S KC KS") #2
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6C 5C 5S JC KS") #1
-    #print ht.Rank()
-
-    #ht = Hand.Parse("6C 5C 2S JC KS") #0
-    #print ht.Rank()
-
-    #print Hand.Parse("TC JC KC AC QC") > Hand.Parse("5C 6C 7C 9C 8C") # True
-
-    #print Hand.Parse("6C 5C 5S JC KS") > Hand.Parse("5C 6C 7C 9C 8C") # False
-
-    #print Hand.Parse("6C 5D 5S JC KS") < Hand.Parse("6C 5C 5S JC KS") # True
-
-    #print CompareHands("6C 5D 5S JC KS 6C 5C 5S JC KS") #2
-
     cardHands = ReadCardsFile("input/input54.txt")
-    #print cardHands
 
     p1 = 0
     p2 = 0
