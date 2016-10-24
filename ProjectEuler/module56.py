@@ -8,5 +8,21 @@ from PrimesCache import *
 
 
 def SolveProblem():
-    print "."   
-    return -1
+    print "." 
+    
+    maxSum = 0
+
+    for a in range(100):
+        for b in range(100):
+            n = a**b
+            nArr = ConvertIntToIntArray(n)
+            sum = SumArray(nArr)
+
+            if (sum > maxSum):
+                print sum
+                maxSum = sum
+
+    
+
+      
+    return maxSum

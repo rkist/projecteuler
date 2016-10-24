@@ -31,6 +31,7 @@
     <Compile Include="FileHelpers.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module57.py" />
     <Compile Include="module56.py" />
     <Compile Include="module55.py" />
     <Compile Include="module54.py" />
