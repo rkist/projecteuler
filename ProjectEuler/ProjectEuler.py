@@ -1,5 +1,5 @@
 import time
-from module55 import SolveProblem
+from module56 import SolveProblem
 
 
 if __name__ == "__main__":    

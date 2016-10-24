@@ -12,6 +12,21 @@ def IsPalindrome(arr):
             return False
     return True
 
+
+def IsNumberPalindrome(num, base = 10):
+    arr = ConvertIntToIntArray(num, base)
+    for index in range(0,len(arr)/2):
+        if arr[index] != arr[-(index+1)]:
+            return False
+    return True
+
+def InvertNumber(num, base = 10):
+    numArr = ConvertIntToIntArray(num, base)
+    numArrInv = numArr[::-1]
+    numInv = ConvertIntArrayToInt(numArrInv, base)
+    return numInv
+
+
 def ConvertIntArrayToInt(numList, base = 10):
     tot = 0
     for num in numList:
@@ -27,6 +42,8 @@ def ConvertIntToIntArray(number, base = 10):
        number = number / base
     arr.reverse()
     return arr
+
+
 
 def GetNameValue(name):
     sum = 0
