@@ -20,6 +20,7 @@ class PrimesCache:
 
         self.Primes = primes[:-1]
         self.HigherPrime = self.Primes[-1]
+        self.HigherPrimeSquared = self.HigherPrime*self.HigherPrime
 
         return primes
 
@@ -34,7 +35,7 @@ class PrimesCache:
     def IsPrime(self, num):
         if (num <= self.HigherPrime):
             return ArrayHelpers.IsInArray(self.Primes, num)
-        elif (num < self.HigherPrime**2):
+        elif (num < self.HigherPrimeSquared):
             return  self._IsPrimeWithCache(num)
         else:
             return NumericalHelpers.IsPrime(num)

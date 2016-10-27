@@ -9,36 +9,55 @@ south = (0,1)
 east = (1,0)
 west = (-1,0)
 
-def BuildMatrix(lateralSize):
-    maxVal = lateralSize*lateralSize
-    numbers = range(1,maxVal+1)
+def CalculateBuildMatrixRatio(primesCache):
+    ratio = 1.0
+    lateralSize = 30001
+     
+    totalPrimes = 0
 
+    maxVal = lateralSize*lateralSize
     margin = lateralSize/2 - 1
 
-    matrix = [[0 for x in range(lateralSize)] for y in range(lateralSize)] 
+    #matrix = [[0 for x in range(lateralSize)] for y in range(lateralSize)] 
     maxMatrixPosition = lateralSize-1
     matrixPosition = [lateralSize/2, lateralSize/2]
 
     direction = east
 
-    for number in numbers:
+    for number in xrange(1,maxVal+1):
         if (direction == east and matrixPosition[0] == maxMatrixPosition - margin):
+            if (primesCache.IsPrime(number)):
+                totalPrimes += 1
             direction = north
         elif (direction == north and matrixPosition[1] == margin):
+            if (primesCache.IsPrime(number)):
+                totalPrimes += 1
             direction = west
         if (direction == west and matrixPosition[0] == margin):
+            if (primesCache.IsPrime(number)):
+                totalPrimes += 1
             direction = south
         elif (direction == south and matrixPosition[1] == maxMatrixPosition - margin):
+            if (primesCache.IsPrime(number)):
+                totalPrimes += 1
             direction = east
+
+            currSize = lateralSize-2*margin
+            totalNumbers = 2*(currSize) - 1
+            ratio = float(totalPrimes)/float(totalNumbers)
+            print str(currSize) + ' : ' + str(ratio)
+
+            if (ratio < 0.1):
+                return currSize
+
             margin -= 1
 
 
-        matrix[matrixPosition[0]][matrixPosition[1]] = number
+        #matrix[matrixPosition[0]][matrixPosition[1]] = number
         matrixPosition[0] += direction[0]
-        matrixPosition[1] += direction[1]
-    return matrix
+        matrixPosition[1] += direction[1]          
 
-
+    return -1
 
 
 def PrintMatrix(matrix):
@@ -49,47 +68,10 @@ def PrintMatrix(matrix):
         print string
 
 
-def CalculatePrimesRatioInDiagnals(matrix, primesCache):
-    sum = 0
-    pos = [0,0]
-    lenght = len(matrix)
-
-    totalNumbers = 2*lenght - 1
-    totalPrimes = 0
-
-    while (pos[0] < lenght):
-        n = matrix[pos[0]][pos[1]]
-        if (primesCache.IsPrime(n)):
-            totalPrimes += 1
-        pos[0] += 1
-        pos[1] += 1
-
-    pos = [0, lenght-1]
-    while (pos[0] < lenght):
-        n = matrix[pos[0]][pos[1]]
-        if (primesCache.IsPrime(n)):
-            totalPrimes += 1
-        pos[0] += 1
-        pos[1] -= 1
-
-    return float(totalPrimes)/float(totalNumbers)
-
-
 def SolveProblem():
     pCache = PrimesCache()
-    pCache.LoadCachedPrimesFromFile('cache/primes.1000000.txt')
+    pCache.LoadCachedPrimesFromFile('cache/primes.20000000.txt')
 
-    matrixSize = 107
-    ratio = 1.0
-    while (ratio > 0.1):
-        matrix = BuildMatrix(matrixSize)
-        ratio = CalculatePrimesRatioInDiagnals(matrix, pCache)
-
-        PrintMatrix(matrix)
-        break
-
-        print str(matrixSize) + " : " + str(ratio)
-
-        matrixSize += 500
+    matrixSize = CalculateBuildMatrixRatio(pCache)
 
     return matrixSize
