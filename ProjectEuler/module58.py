@@ -4,7 +4,49 @@ from FileHelpers import *
 from Parallel import *
 from PrimesCache import *
 
-from module28 import BuildMatrix, PrintMatrix
+north = (0,-1)
+south = (0,1)
+east = (1,0)
+west = (-1,0)
+
+def BuildMatrix(lateralSize):
+    maxVal = lateralSize*lateralSize
+    numbers = reversed(range(1,maxVal+1))
+
+    margin = 0
+
+    matrix = [[0 for x in range(lateralSize)] for y in range(lateralSize)] 
+    maxMatrixPosition = lateralSize-1
+    matrixPosition = [maxMatrixPosition,0]
+
+    direction = west
+
+    for number in numbers:
+        if (direction == west and matrixPosition[0] == margin):
+            direction = south
+        elif (direction == south and matrixPosition[1] == maxMatrixPosition - margin):
+            direction = east
+        elif (direction == east and matrixPosition[0] == maxMatrixPosition - margin):
+            direction = north
+            margin += 1
+        elif (direction == north and matrixPosition[1] == margin):
+            direction = west
+
+        matrix[matrixPosition[0]][matrixPosition[1]] = number
+        matrixPosition[0] += direction[0]
+        matrixPosition[1] += direction[1]
+    return matrix
+
+
+
+
+def PrintMatrix(matrix):
+    for j in range(len(matrix)):
+        string = ""
+        for i in range(len(matrix[j])):
+            string += str(matrix[i][j]) + "\t"
+        print string
+
 
 def CalculatePrimesRatioInDiagnals(matrix):
     sum = 0
@@ -34,7 +76,7 @@ def CalculatePrimesRatioInDiagnals(matrix):
 
 def SolveProblem():
 
-    matrixSize = 19007
+    matrixSize = 7
     ratio = 1.0
     while (ratio > 0.1):
         matrix = BuildMatrix(matrixSize)
@@ -44,6 +86,8 @@ def SolveProblem():
 
         print str(matrixSize) + " : " + str(ratio)
 
-        matrixSize += 1000
+        matrixSize += 100
+
+        
 
     return matrixSize
