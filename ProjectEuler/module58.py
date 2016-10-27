@@ -34,7 +34,7 @@ def CalculatePrimesRatioInDiagnals(matrix):
 
 def SolveProblem():
 
-    matrixSize = 19007
+    matrixSize = 26007
     ratio = 1.0
     while (ratio > 0.1):
         matrix = BuildMatrix(matrixSize)
@@ -44,6 +44,8 @@ def SolveProblem():
 
         print str(matrixSize) + " : " + str(ratio)
 
-        matrixSize += 1000
+        matrixSize += 500
 
     return matrixSize
+
+    return -1
