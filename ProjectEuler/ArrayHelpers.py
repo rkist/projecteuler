@@ -27,6 +27,14 @@ def InvertNumber(num, base = 10):
     return numInv
 
 
+def ConvertStringToInt(string, base = 10):
+    tot = 0
+    for char in string:
+        tot *= base
+        num = int(char)
+        tot += num
+    return tot
+
 def ConvertIntArrayToInt(numList, base = 10):
     tot = 0
     for num in numList:

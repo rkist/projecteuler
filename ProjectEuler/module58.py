@@ -48,7 +48,7 @@ def PrintMatrix(matrix):
         print string
 
 
-def CalculatePrimesRatioInDiagnals(matrix):
+def CalculatePrimesRatioInDiagnals(matrix, primesCache):
     sum = 0
     pos = [0,0]
     lenght = len(matrix)
@@ -58,7 +58,7 @@ def CalculatePrimesRatioInDiagnals(matrix):
 
     while (pos[0] < lenght):
         n = matrix[pos[0]][pos[1]]
-        if (IsPrime(n)):
+        if (primesCache.IsPrime(n)):
             totalPrimes += 1
         pos[0] += 1
         pos[1] += 1
@@ -66,7 +66,7 @@ def CalculatePrimesRatioInDiagnals(matrix):
     pos = [0, lenght-1]
     while (pos[0] < lenght):
         n = matrix[pos[0]][pos[1]]
-        if (IsPrime(n)):
+        if (primesCache.IsPrime(n)):
             totalPrimes += 1
         pos[0] += 1
         pos[1] -= 1
@@ -76,18 +76,21 @@ def CalculatePrimesRatioInDiagnals(matrix):
 
 def SolveProblem():
 
-    matrixSize = 7
+    pCache = PrimesCache()
+
+    pCache.LoadCachedPrimesFromFile('cache/primes.5000000.txt')
+
+
+    matrixSize = 1007
     ratio = 1.0
     while (ratio > 0.1):
         matrix = BuildMatrix(matrixSize)
-        #PrintMatrix(matrix)
 
-        ratio = CalculatePrimesRatioInDiagnals(matrix)
+
+        ratio = CalculatePrimesRatioInDiagnals(matrix, pCache)
 
         print str(matrixSize) + " : " + str(ratio)
 
-        matrixSize += 100
-
-        
+        matrixSize += 500
 
     return matrixSize
