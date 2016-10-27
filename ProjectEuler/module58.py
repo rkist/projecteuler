@@ -11,26 +11,27 @@ west = (-1,0)
 
 def BuildMatrix(lateralSize):
     maxVal = lateralSize*lateralSize
-    numbers = reversed(range(1,maxVal+1))
+    numbers = range(1,maxVal+1)
 
-    margin = 0
+    margin = lateralSize/2 - 1
 
     matrix = [[0 for x in range(lateralSize)] for y in range(lateralSize)] 
     maxMatrixPosition = lateralSize-1
-    matrixPosition = [maxMatrixPosition,0]
+    matrixPosition = [lateralSize/2, lateralSize/2]
 
-    direction = west
+    direction = east
 
     for number in numbers:
+        if (direction == east and matrixPosition[0] == maxMatrixPosition - margin):
+            direction = north
+        elif (direction == north and matrixPosition[1] == margin):
+            direction = west
         if (direction == west and matrixPosition[0] == margin):
             direction = south
         elif (direction == south and matrixPosition[1] == maxMatrixPosition - margin):
             direction = east
-        elif (direction == east and matrixPosition[0] == maxMatrixPosition - margin):
-            direction = north
-            margin += 1
-        elif (direction == north and matrixPosition[1] == margin):
-            direction = west
+            margin -= 1
+
 
         matrix[matrixPosition[0]][matrixPosition[1]] = number
         matrixPosition[0] += direction[0]
@@ -78,11 +79,14 @@ def SolveProblem():
     pCache = PrimesCache()
     pCache.LoadCachedPrimesFromFile('cache/primes.1000000.txt')
 
-    matrixSize = 1007
+    matrixSize = 107
     ratio = 1.0
     while (ratio > 0.1):
         matrix = BuildMatrix(matrixSize)
         ratio = CalculatePrimesRatioInDiagnals(matrix, pCache)
+
+        PrintMatrix(matrix)
+        break
 
         print str(matrixSize) + " : " + str(ratio)
 
