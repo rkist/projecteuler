@@ -75,18 +75,13 @@ def CalculatePrimesRatioInDiagnals(matrix, primesCache):
 
 
 def SolveProblem():
-
     pCache = PrimesCache()
-
-    pCache.LoadCachedPrimesFromFile('cache/primes.5000000.txt')
-
+    pCache.LoadCachedPrimesFromFile('cache/primes.1000000.txt')
 
     matrixSize = 1007
     ratio = 1.0
     while (ratio > 0.1):
         matrix = BuildMatrix(matrixSize)
-
-
         ratio = CalculatePrimesRatioInDiagnals(matrix, pCache)
 
         print str(matrixSize) + " : " + str(ratio)

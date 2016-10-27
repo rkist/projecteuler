@@ -18,8 +18,8 @@ class PrimesCache:
         for p in primesStr:
             primes.append(ArrayHelpers.ConvertStringToInt(p))
 
-        self.Primes = primes
-        self.HigherPrime = primes[-1]
+        self.Primes = primes[:-1]
+        self.HigherPrime = self.Primes[-1]
 
         return primes
 
