@@ -38,6 +38,8 @@ def SolveProblem():
                 pairsWithProperty.append(p)
                 
 
+    #create graph
+    #find clique
 
 
     return -1
