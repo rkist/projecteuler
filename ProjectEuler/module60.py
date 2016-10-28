@@ -9,4 +9,13 @@ from PrimesCache import *
 
 def SolveProblem():
     print "."   
+
+    pCache = PrimesCache()
+    pCache.LoadCachedPrimesFromFile('cache/primes.1000.txt')
+
+    numberOfPrimesWithProperty = 4
+
+    print len(pCache.Primes)
+
+
     return -1
