@@ -19,6 +19,7 @@ class PrimesCache:
             primes.append(ArrayHelpers.ConvertStringToInt(p))
 
         self.Primes = primes[:-1]
+        self.PrimesLen = len(self.Primes)
         self.HigherPrime = self.Primes[-1]
         self.HigherPrimeSquared = self.HigherPrime*self.HigherPrime
 
