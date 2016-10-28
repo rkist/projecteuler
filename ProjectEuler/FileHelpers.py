@@ -13,3 +13,10 @@ def ReadCardsFile(path):
         lines.append(line[:-1])
     return lines
 
+def ReadNumbers(path):
+    inputStr = file(path).read()
+    numStrs = inputStr.split(",")
+    nums = []
+    for numStr in numStrs:
+        nums.append(int(numStr))
+    return nums
