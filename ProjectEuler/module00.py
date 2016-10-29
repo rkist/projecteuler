@@ -3,6 +3,7 @@ from NumericalHelpers import *
 from FileHelpers import *
 from Parallel import *
 from PrimesCache import *
+from GraphHelpers import *
 
 
 

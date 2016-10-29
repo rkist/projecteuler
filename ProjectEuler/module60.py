@@ -3,6 +3,7 @@ from NumericalHelpers import *
 from FileHelpers import *
 from Parallel import *
 from PrimesCache import *
+from GraphHelpers import *
 
 def ConcatNums(num0, num1):
     num0Arr = ConvertIntToIntArray(num0)
@@ -16,18 +17,16 @@ def TestProperty(primesCache, num0, num1):
     conc1 = ConcatNums(num1, num0)
 
     return primesCache.IsPrime(conc0) and primesCache.IsPrime(conc1)
-
-
-
+           
 
 
 def SolveProblem():
     print "."   
 
     primesCache = PrimesCache()
-    primesCache.LoadCachedPrimesFromFile('cache/primes.1000.txt')
+    primesCache.LoadCachedPrimesFromFile('cache/primes.10000.txt')
 
-    numberOfPrimesWithProperty = 4
+    numberOfPrimesWithProperty = 5
 
     pairsWithProperty = []
 
@@ -38,8 +37,12 @@ def SolveProblem():
                 pairsWithProperty.append(p)
                 
 
-    #create graph
-    #find clique
+    
+    graph = CreateGraph(primesCache.Primes, pairsWithProperty)
+
+    clique = DetectClique(graph, numberOfPrimesWithProperty)
+
+    sum = SumArray(clique)
 
 
-    return -1
+    return sum
