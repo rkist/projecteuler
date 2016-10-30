@@ -15,8 +15,13 @@ def CreateUndirectedGraph(nodes, vertices):
 
 
 def DetectKClique(undirectedGraph, size):
+    cleanGraph = dict()
+    for k, v in undirectedGraph.iteritems():
+        if (len(v) >= size-1):
+            cleanGraph[k] = v
+
     cliqueCandidate = []
-    return _DetectCliqueRecursion(cliqueCandidate, undirectedGraph, size)       
+    return _DetectCliqueRecursion(cliqueCandidate, cleanGraph, size)       
 
 def _DetectCliqueRecursion(cliqueCandidate, graph, size):
     if (_CheckSubsetCompleteness(cliqueCandidate, graph)):
