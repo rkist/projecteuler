@@ -53,12 +53,24 @@ def TriangleNumber(n):
     res = (n * (n + 1)) / 2
     return res
 
-def PentagonNumber(n):
+def SquareNumber(n):
+    res = (n * n) 
+    return res
+
+def PentagonalNumber(n):
     res = (n * (3*n - 1)) / 2
     return res
 
-def HexagonNumber(n):
+def HexagonalNumber(n):
     res = n * ((2 * n) - 1)
+    return res
+
+def HeptagonalNumber(n):
+    res = n * ((5 * n) - 3) / 2
+    return res
+
+def OctagonalNumber(n):
+    res = n * ((3 * n) - 2)
     return res
 
 def Factor(n):
