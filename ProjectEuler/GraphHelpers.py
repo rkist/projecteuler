@@ -9,14 +9,32 @@ def CreateUndirectedGraph(nodes, vertices):
 
     return graph
 
+def CreateDirectedGraph(nodes, vertices):
+    graph = dict()
+    for node in nodes:
+        graph[node] = []
+
+    for n, m in vertices:
+        graph[n].append(m)
+
+    return graph
 
 
+def DetectKCicle(graph, size):
+    cicles = []
+    for k, v in graph.iteritems():
+        cicle = _DetectKCicleRecursion([k], graph, size)
+        if (cicle is not None):
+            cicles.append(cicle)
+    return cicles
+
+def _DetectKCicleRecursion(cicleCandidate, graph, size):
+    pass
 
 
-
-def DetectKClique(undirectedGraph, size):
+def DetectKClique(graph, size):
     cleanGraph = dict()
-    for k, v in undirectedGraph.iteritems():
+    for k, v in graph.iteritems():
         if (len(v) >= size-1):
             cleanGraph[k] = v
 
