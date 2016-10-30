@@ -1,4 +1,4 @@
-def CreateGraph(nodes, vertices):
+def CreateUndirectedGraph(nodes, vertices):
     graph = dict()
     for node in nodes:
         graph[node] = []
@@ -14,26 +14,25 @@ def CreateGraph(nodes, vertices):
 
 
 
-def DetectClique(graph, size):
+def DetectKClique(undirectedGraph, size):
     cliqueCandidate = []
-    _DetectCliqueRecursion(cliqueCandidate, graph, size)       
-    return cliqueCandidate
-
+    return _DetectCliqueRecursion(cliqueCandidate, undirectedGraph, size)       
 
 def _DetectCliqueRecursion(cliqueCandidate, graph, size):
     if (_CheckSubsetCompleteness(cliqueCandidate, graph)):
         if (len(cliqueCandidate) == size):
             print cliqueCandidate
-            return True
+            return cliqueCandidate
         else:
             for k, v in graph.iteritems():              
                 if (k not in cliqueCandidate):
                     newCliqueCandidate = cliqueCandidate[:]
                     newCliqueCandidate.append(k)
-                    if (_DetectCliqueRecursion(newCliqueCandidate, graph, size)):
-                        return True
+                    c = _DetectCliqueRecursion(newCliqueCandidate, graph, size)
+                    if (c is not None):
+                        return c
     else:
-        return False
+        return None
 
 
 def _CheckSubsetCompleteness(cliqueCandidate, graph):

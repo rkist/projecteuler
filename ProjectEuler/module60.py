@@ -38,9 +38,9 @@ def SolveProblem():
                 
 
     
-    graph = CreateGraph(primesCache.Primes, pairsWithProperty)
+    graph = CreateUndirectedGraph(primesCache.Primes, pairsWithProperty)
 
-    clique = DetectClique(graph, numberOfPrimesWithProperty)
+    clique = DetectKClique(graph, numberOfPrimesWithProperty)
 
     sum = SumArray(clique)
 
