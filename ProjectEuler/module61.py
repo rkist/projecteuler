@@ -76,7 +76,6 @@ def SolveProblem():
     print "."  
 
     nodes = triangleNumbers + squareNumbers + pentagonalNumbers + hexagonalNumbers + heptagonalNumbers + octogonalNumbers
-
     vertices = []
 
     for n in nodes:
@@ -90,23 +89,19 @@ def SolveProblem():
 
     cicles = DetectKCicles(graph, 6)
 
+
+
+
+
     filteredCicles = dict()
+    separatedNodes = [triangleNumbers, squareNumbers, pentagonalNumbers, hexagonalNumbers, heptagonalNumbers, octogonalNumbers]
    
     for cicle in cicles:
         presence = [0,0,0,0,0,0]
-        for n in cicle:
-            if (n in triangleNumbers):
-                presence[0]+= 1
-            if (n in squareNumbers):
-                presence[1]+= 1
-            if (n in pentagonalNumbers):
-                presence[2]+= 1
-            if (n in hexagonalNumbers):
-                presence[3]+= 1
-            if (n in heptagonalNumbers):
-                presence[4]+= 1
-            if (n in octogonalNumbers):
-                presence[5]+= 1
+        for i in range(len(cicle)):
+            for j in range(len(separatedNodes)):
+                if (cicle[i] in separatedNodes[j]):
+                    presence[j]+= 1
 
         allPresent = True    
         for p in presence:
