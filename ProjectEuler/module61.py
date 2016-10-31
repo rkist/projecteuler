@@ -84,14 +84,40 @@ def SolveProblem():
             if (TestProperty(n, m)):
                 vertices.append((n,m))
 
-    print len(nodes)
-    print len(vertices)
+    print "."
 
     graph = CreateDirectedGraph(nodes, vertices)
 
-    cicles = DetectCicles(graph)
+    cicles = DetectKCicles(graph, 6)
 
+    filteredCicles = dict()
+   
     for cicle in cicles:
-        print cicle
+        presence = [0,0,0,0,0,0]
+        for n in cicle:
+            if (n in triangleNumbers):
+                presence[0]+= 1
+            if (n in squareNumbers):
+                presence[1]+= 1
+            if (n in pentagonalNumbers):
+                presence[2]+= 1
+            if (n in hexagonalNumbers):
+                presence[3]+= 1
+            if (n in heptagonalNumbers):
+                presence[4]+= 1
+            if (n in octogonalNumbers):
+                presence[5]+= 1
+
+        allPresent = True    
+        for p in presence:
+            if (p == 0):
+                allPresent = False
+
+        if (allPresent):          
+            sum = SumArray(cicle)
+            filteredCicles[sum] = cicle
+
+    for k,v in filteredCicles.iteritems():
+        print k, v
 
     return -1

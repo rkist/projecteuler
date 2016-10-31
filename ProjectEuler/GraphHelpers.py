@@ -31,18 +31,45 @@ def DetectCicles(graph):
         _DetectCicleRecursion([k], cicles, graph)
     return cicles
 
-def _DetectCicleRecursion(cicleCandidate, cicles, graph):
+# not tested
+def _DetectCicleRecursion(cicleCandidate, cicles, graph): 
     rootNode = cicleCandidate[-1]  
-    if (len(cicleCandidate) > 1 and rootNode == cicleCandidate[0]): 
-        cicles.append(cicleCandidate)
+    cicleCandidateLen = len(cicleCandidate)
+    if (cicleCandidateLen > 1 and rootNode == cicleCandidate[0]): 
+        cicles.append(cicleCandidate[:-1])
         return
-    if (rootNode in cicleCandidate[1:]): 
+    if (rootNode in cicleCandidate[:-1]): 
         return
     adjNodes = graph[rootNode]
     for node in adjNodes:
         newCicleCandidate = cicleCandidate[:]
         newCicleCandidate.append(node)
         _DetectCicleRecursion(newCicleCandidate, cicles, graph)
+
+
+
+
+
+
+def DetectKCicles(graph, size):
+    cicles = []
+    for k, v in graph.iteritems():
+        _DetectKCicleRecursion([k], cicles, graph, size)
+    return cicles
+
+def _DetectKCicleRecursion(cicleCandidate, cicles, graph, size):
+    rootNode = cicleCandidate[-1]  
+    cicleCandidateLen = len(cicleCandidate)
+    if (cicleCandidateLen == size+1 and rootNode == cicleCandidate[0]): 
+        cicles.append(cicleCandidate[:-1])
+        return
+    if (cicleCandidateLen > size or rootNode in cicleCandidate[:-1]): 
+        return
+    adjNodes = graph[rootNode]
+    for node in adjNodes:
+        newCicleCandidate = cicleCandidate[:]
+        newCicleCandidate.append(node)
+        _DetectKCicleRecursion(newCicleCandidate, cicles, graph, size)
 
 
 
