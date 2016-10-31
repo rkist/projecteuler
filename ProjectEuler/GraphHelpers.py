@@ -20,7 +20,12 @@ def CreateDirectedGraph(nodes, vertices):
     return graph
 
 
-def DetectKCicle(graph, size):
+
+
+
+
+
+def DetectCicles(graph):
     cicles = []
     for k, v in graph.iteritems():
         _DetectCicleRecursion([k], cicles, graph)
@@ -28,16 +33,23 @@ def DetectKCicle(graph, size):
 
 def _DetectCicleRecursion(cicleCandidate, cicles, graph):
     rootNode = cicleCandidate[-1]  
-    if (rootNode == cicleCandidate[0]): 
+    if (len(cicleCandidate) > 1 and rootNode == cicleCandidate[0]): 
         cicles.append(cicleCandidate)
         return
-    if (rootNode in cicleCandidate): 
+    if (rootNode in cicleCandidate[1:]): 
         return
     adjNodes = graph[rootNode]
     for node in adjNodes:
         newCicleCandidate = cicleCandidate[:]
         newCicleCandidate.append(node)
         _DetectCicleRecursion(newCicleCandidate, cicles, graph)
+
+
+
+
+
+
+
 
 
 def DetectKClique(graph, size):
