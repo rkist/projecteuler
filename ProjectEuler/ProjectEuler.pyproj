@@ -34,6 +34,7 @@
     <Compile Include="GraphHelpers.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module63.py" />
     <Compile Include="module62.py" />
     <Compile Include="module61.py" />
     <Compile Include="module60.py" />
