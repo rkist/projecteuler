@@ -28,16 +28,29 @@ def Factorial(num):
 def C(n,r):
     return Factorial(n)/(Factorial(r) * Factorial(n-r))
 
+
+
+
+
+
 def IntSqrt(n): #Root Square of Integer, -1 if not Integer result
+    x = SmallerIntSqrt(n)
+    if (x*x == n):
+        return x
+    else:
+        return -1
+
+def SmallerIntSqrt(n):
     x = n
     y = (x + 1) // 2
     while y < x:
         x = y
         y = (x + n // x) // 2
-    if (x*x == n):
-        return x
-    else:
-        return -1
+    return x
+
+
+
+
 
 
 fibonacciArray = [1,1,2,3]
