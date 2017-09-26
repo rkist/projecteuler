@@ -23,16 +23,30 @@ from GraphHelpers import *
 #        return (-1,-1)
 
 
+#def SolveForD(D):
+#    if (IntSqrt(D) == -1): # not square number
+#        x = 2
+#        while True:
+#            ans = x
+#            y = SmallerIntSqrt((x*x - 1)/D)
+#            ans = x*x - D*y*y
+#            if (ans == 1):
+#                return (x,y)
+#            x+=1
+#    else:
+#        return (-1,-1)
+
+
 def SolveForD(D):
     if (IntSqrt(D) == -1): # not square number
-        x = 2
+        y = 1
         while True:
-            ans = x
-            y = SmallerIntSqrt((x*x - 1)/D)
+            ans = y
+            x = SmallerIntSqrt(1 + D*y*y)
             ans = x*x - D*y*y
             if (ans == 1):
                 return (x,y)
-            x+=1
+            y+=1
     else:
         return (-1,-1)
 
