@@ -42,8 +42,8 @@ def SolveForD(D):
     if (IntSqrt(D) == -1): # not square number
         y = 1
         while True:
-            ans = y
-            x = SmallerIntSqrt(1 + D*y*y)
+            # x = SmallerIntSqrt(1 + D*y*y)
+            x = int(sqrt(1 + D*y*y))
             ans = x*x - D*y*y
             if (ans == 1):
                 print str(D) + ": " + str(x) + "," + str(y)
@@ -52,7 +52,19 @@ def SolveForD(D):
     else:
         return (-1,-1)
 
+dLimit = 1000
 
+dArr = range(1,dLimit+1)
+dArrMutable = range(1,dLimit+1)
+solutionsDic = {}
+
+def SolveForX(x):
+    for D in dArrMutable:
+        y = int(sqrt((x*x - 1)/D))
+        ans = x*x - D*y*y
+        if (ans == 1):
+            dArrMutable.remove(D)
+            solutionsDic[D] = (x,y)
 
 
 def SolveProblem():
@@ -60,17 +72,69 @@ def SolveProblem():
 
     maxX = 0
     maxD = 0
-    dArr = range(1,1000)
-    solArr = ParalelProcess(SolveForD, dArr)
-    D = 1
-    for (x,y) in solArr:           
-        if (x > maxX):
-            maxX = x
-            maxD = D
-            print "NEW MAX: x:" + str(x) + " D:" + str(D)      
-        D += 1
+    
+
+    for D in dArr:
+        if (IntSqrt(D) != -1):
+            dArrMutable.remove(D)
+            solutionsDic[D] = (-1,-1)
+
+    remaining = len(dArrMutable)
+    x = 2
+    while remaining > 0:
+        lastRemaining = remaining
+
+        SolveForX(x)
+        
+        remaining = len(dArrMutable)
+
+        if (lastRemaining > remaining):
+            print remaining
+
+        #if (x >= 649):
+        #    break
+
+        x += 1
+
+    for D in dArr:
+        if (solutionsDic.has_key(D)): 
+            (x,y) = solutionsDic[D]
+            print str(D) + ": " + str(x) + "," + str(y)
+            if (x > maxX):
+                maxX = x
+                maxD = D
+                print "NEW MAX: x:" + str(x) + " D:" + str(D)  
+
+
+    #for D, (x,y) in solutionsDic.iteritems():        
+    #    print str(D) + ": " + str(x) + "," + str(y)
+    #    if (x > maxX):
+    #        maxX = x
+    #        maxD = D
+    #        print "NEW MAX: x:" + str(x) + " D:" + str(D)  
+
+
 
     return maxD
+
+
+
+#def SolveProblem():
+#    print __name__
+
+#    maxX = 0
+#    maxD = 0
+#    dArr = range(1,1001)
+#    solArr = ParalelProcess(SolveForD, dArr, 5)
+#    D = 1
+#    for (x,y) in solArr:           
+#        if (x > maxX):
+#            maxX = x
+#            maxD = D
+#            print "NEW MAX: x:" + str(x) + " D:" + str(D)      
+#        D += 1
+
+#    return maxD
 
 
 
