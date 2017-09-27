@@ -38,6 +38,7 @@ from GraphHelpers import *
 
 
 def SolveForD(D):
+    print str(D) + " start"
     if (IntSqrt(D) == -1): # not square number
         y = 1
         while True:
@@ -45,6 +46,7 @@ def SolveForD(D):
             x = SmallerIntSqrt(1 + D*y*y)
             ans = x*x - D*y*y
             if (ans == 1):
+                print str(D) + ": " + str(x) + "," + str(y)
                 return (x,y)
             y+=1
     else:
@@ -58,16 +60,15 @@ def SolveProblem():
 
     maxX = 0
     maxD = 0
-    for D in xrange(1,1000):
-
-        (x,y) = SolveForD(D)
-        print str(D) + ": " + str(x) + "," + str(y)
-
+    dArr = range(1,1000)
+    solArr = ParalelProcess(SolveForD, dArr)
+    D = 1
+    for (x,y) in solArr:           
         if (x > maxX):
             maxX = x
             maxD = D
             print "NEW MAX: x:" + str(x) + " D:" + str(D)      
-
+        D += 1
 
     return maxD
 
