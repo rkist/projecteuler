@@ -5,6 +5,7 @@ from FileHelpers import *
 from Parallel import *
 from PrimesCache import *
 from GraphHelpers import *
+from Memoize import *
 
 
 #def SolveForD(D):
@@ -52,15 +53,21 @@ def SolveForD(D):
     else:
         return (-1,-1)
 
+
 dLimit = 1000
 
 dArr = range(1,dLimit+1)
 dArrMutable = range(1,dLimit+1)
 solutionsDic = {}
 
+#@Memoize
+def Sy(x, D):
+    return int(sqrt((x*x - 1)/D))
+
+
 def SolveForX(x):
     for D in dArrMutable:
-        y = int(sqrt((x*x - 1)/D))
+        y = Sy(x, D)
         ans = x*x - D*y*y
         if (ans == 1):
             dArrMutable.remove(D)
