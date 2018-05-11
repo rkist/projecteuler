@@ -7,71 +7,47 @@ from PrimesCache import *
 from GraphHelpers import *
 from Memoize import *
 
+def CalcM(D, a, b, k):
+    m = 0
+    lastDiff = abs(m*m - D)
+    lastM = m
+    while (True):
+        if ((a+b*m) % (k) == 0):
+            diff = abs(m*m - D)
+            if (diff > lastDiff):
+                return lastM
+            else:
+                lastDiff = diff
+                lastM = m
+        m += 1
 
-#def SolveForD(D):
-#    if (IntSqrt(D) == -1): # not square number
-#        x = 2
-#        while True:
-#            ans = x
-#            y = SmallerIntSqrt((x*x - 1)/D)
-#            while (ans > 1):
-#                ans = x*x - D*y*y
-#                if (ans == 1):
-#                    return (x,y)
-#                y+=1
-#            x+=1
-#    else:
-#        return (-1,-1)
-
-
-#def SolveForD(D):
-#    if (IntSqrt(D) == -1): # not square number
-#        x = 2
-#        while True:
-#            ans = x
-#            y = SmallerIntSqrt((x*x - 1)/D)
-#            ans = x*x - D*y*y
-#            if (ans == 1):
-#                return (x,y)
-#            x+=1
-#    else:
-#        return (-1,-1)
+def CalcK(D, a, b):
+    return a*a - D*b*b
 
 
-def SolveForD(D):
-    print str(D) + " start"
-    if (IntSqrt(D) == -1): # not square number
-        y = 1
-        while True:
-            # x = SmallerIntSqrt(1 + D*y*y)
-            x = int(sqrt(1 + D*y*y))
-            ans = x*x - D*y*y
-            if (ans == 1):
-                print str(D) + ": " + str(x) + "," + str(y)
-                return (x,y)
-            y+=1
+def Solve(D, a, b):    
+    k = CalcK(D, a, b)
+    if (k == 1):
+        return (a, b)
     else:
-        return (-1,-1)
+        m = CalcM(D, a, b, k)
+        aa = (a*m + D*b)/abs(k)
+        bb = (a + b*m)/abs(k)
+        #kk = (m*m - D)/k
+        return Solve(D, aa, bb)
 
 
-dLimit = 1000
 
-dArr = range(1,dLimit+1)
-dArrMutable = range(1,dLimit+1)
-solutionsDic = {}
+#def SolveProblem():
+#    print __name__
 
-#@Memoize
-def Sy(x, D):
-    return int(sqrt((x*x - 1)/D))
+#    b = 1
+#    D = 181
+#    a = GetClosestIntegerSquareRoot(D * b);
+#    #k = a*a - D*b*b
 
-
-def SolveForX(x):
-    for D in dArrMutable:
-        y = Sy(x, D)
-        ans = x*x - D*y*y
-        if (ans == 1):
-            dArrMutable.remove(D)
-            solutionsDic[D] = (x,y)
+#    aaa = Solve(D, a, b)
+#    print aaa
 
 
 def SolveProblem():
@@ -79,29 +55,20 @@ def SolveProblem():
 
     maxX = 0
     maxD = 0
-    
 
+    solutionsDic = dict()
+    dArr = range(1, 1000 + 1)
+    
     for D in dArr:
         if (IntSqrt(D) != -1):
-            dArrMutable.remove(D)
-            solutionsDic[D] = (-1,-1)
+            continue
 
-    remaining = len(dArrMutable)
-    x = 2
-    while remaining > 0:
-        lastRemaining = remaining
+        b = 1
+        a = GetClosestIntegerSquareRoot(D * b);
 
-        SolveForX(x)
-        
-        remaining = len(dArrMutable)
+        solutionsDic[D] = Solve(D, a, b)
 
-        if (lastRemaining > remaining):
-            print remaining
-
-        #if (x >= 649):
-        #    break
-
-        x += 1
+        print D, solutionsDic[D]
 
     for D in dArr:
         if (solutionsDic.has_key(D)): 
@@ -112,36 +79,8 @@ def SolveProblem():
                 maxD = D
                 print "NEW MAX: x:" + str(x) + " D:" + str(D)  
 
-
-    #for D, (x,y) in solutionsDic.iteritems():        
-    #    print str(D) + ": " + str(x) + "," + str(y)
-    #    if (x > maxX):
-    #        maxX = x
-    #        maxD = D
-    #        print "NEW MAX: x:" + str(x) + " D:" + str(D)  
-
-
-
     return maxD
 
-
-
-#def SolveProblem():
-#    print __name__
-
-#    maxX = 0
-#    maxD = 0
-#    dArr = range(1,1001)
-#    solArr = ParalelProcess(SolveForD, dArr, 5)
-#    D = 1
-#    for (x,y) in solArr:           
-#        if (x > maxX):
-#            maxX = x
-#            maxD = D
-#            print "NEW MAX: x:" + str(x) + " D:" + str(D)      
-#        D += 1
-
-#    return maxD
 
 
 

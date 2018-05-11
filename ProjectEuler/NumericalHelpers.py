@@ -31,6 +31,29 @@ def C(n,r):
 
 
 
+def IsSquare(n):
+    if n<1:
+        return False
+    else:
+        for i in range(int(n/2)+1):
+            if (i*i)==n:
+                return True
+        return False
+
+def GetClosestIntegerSquareRoot(n):
+    srn = sqrt(n)
+    minor = long(floor(srn))
+    major = long(ceil(srn))
+    diffMinor = abs(n - minor*minor)
+    diffMajor = abs(n - major*major)
+    if (diffMinor < diffMajor):
+        return minor
+    else:
+        return major
+
+
+
+
 
 
 def IntSqrt(n): #Root Square of Integer, -1 if not Integer result
