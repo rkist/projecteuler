@@ -7,8 +7,8 @@ from GraphHelpers import *
 from Memoize import *
 
 
-NumOfGons = 3
-PossibleValues = [1, 2, 3, 4, 5, 6]
+NumOfGons = 5
+PossibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 def GetRemainingValues(perm):
     remainingValues = []
@@ -48,41 +48,53 @@ def CreateStringFromDescriptionArray(descriptionArray):
 def SolveProblem():
     print __name__
 
-    totals = [9, 10, 11, 12]
+    totals = [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
     solutions = []
+    descriptionArrays = []
 
     trianglePermutations = Permute(PossibleValues, NumOfGons)  
 
-    for total in totals:
-        for trianglePermutation in trianglePermutations:
-            #print trianglePermutation
+    
+    for trianglePermutation in trianglePermutations:
+        #print trianglePermutation
         
-            remainingValues = GetRemainingValues(trianglePermutation)       
-            externalPermutations = Permute(remainingValues)
+        remainingValues = GetRemainingValues(trianglePermutation)       
+        externalPermutations = Permute(remainingValues)
 
-            for externalPermutation in externalPermutations:
-                #print "\t" + str(externalPermutation)
+        for externalPermutation in externalPermutations:
+            #print "\t" + str(externalPermutation)
 
-                descriptionArray = FormDescriptionArray(trianglePermutation, externalPermutation)
+            descriptionArray = FormDescriptionArray(trianglePermutation, externalPermutation)
 
-                #print "\t=" + str(descriptionArray)
+            descriptionArrays.append(descriptionArray)
 
-                matchesTotal = TestMagicalTotal(descriptionArray, total)
-                isRightRotation = TestRightRotation(descriptionArray)
+            #print "\t=" + str(descriptionArray)
+
+    for total in totals:
+        for descriptionArray in descriptionArrays:
+            matchesTotal = TestMagicalTotal(descriptionArray, total)
+            isRightRotation = TestRightRotation(descriptionArray)
             
-                if (matchesTotal and isRightRotation):
-                    solutions.append(descriptionArray)                    
-                    print str(total) + "\t" + str(descriptionArray) 
+            if (matchesTotal and isRightRotation):
+                solutions.append(descriptionArray)                    
+                print str(total) + "\t" + str(descriptionArray) 
        
-    maxSolution = 0
+    maxSolution16 = 0
+    maxSolution17 = 0
     for solution in solutions:
         solutionStr = CreateStringFromDescriptionArray(solution)
         solutionInt = int(solutionStr)
 
-        if solutionInt > maxSolution:
-            maxSolution = solutionInt
+        if (len(solutionStr) == 16):
+            if solutionInt > maxSolution16:
+                maxSolution16 = solutionInt
 
-    return maxSolution
+        if (len(solutionStr) == 17):
+            if solutionInt > maxSolution17:
+                maxSolution17 = solutionInt
+
+
+    return maxSolution16
 
 
 #9	4,2,3; 5,3,1; 6,1,2
