@@ -174,6 +174,7 @@
     <Compile Include="module66.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module69.py" />
     <Compile Include="NumericalHelpers.py">
       <SubType>Code</SubType>
     </Compile>
