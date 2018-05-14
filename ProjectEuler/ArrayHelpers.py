@@ -1,6 +1,6 @@
 from math import *
 
-def SumArray(arr):
+def SumArrayValues(arr):
     sum = 0
     for num in arr:
         sum += num
