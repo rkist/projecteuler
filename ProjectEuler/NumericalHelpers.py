@@ -82,6 +82,15 @@ def GetSmallerRelativePrimes(value):
             nArr.append(n)        
     return nArr
 
+def GetNumberOfSmallerRelativePrimes(value):
+    valueDivsSet = GetDivisorsSet(value)
+    counter = 1
+    for n in range(2, value):
+        nDivsSet = GetDivisorsSet(n)
+        if (valueDivsSet.isdisjoint(nDivsSet)):
+            counter += 1       
+    return counter
+
 
 
 
