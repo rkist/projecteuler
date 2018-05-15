@@ -1,4 +1,5 @@
 from math import *
+from ArrayHelpers import AreSortedArraysDisjointed
 
 def GetPrimesInRange(range):
     primes = []
@@ -8,7 +9,7 @@ def GetPrimesInRange(range):
     return primes 
 
 divisorsArrayCache = {}
-def GetDivisorsArray(value):
+def GetDivisorsSortedArray(value):
     if (not divisorsArrayCache.has_key(value)):
         arr = []
         for divisor in range(2,(value/2)+1):
@@ -75,6 +76,7 @@ def GetClosestIntegerSquareRoot(n):
 
 
 
+
 def GetSmallerRelativePrimes(value):
     valueDivsSet = GetDivisorsSet(value)
     nArr = [1]
@@ -85,11 +87,11 @@ def GetSmallerRelativePrimes(value):
     return nArr
 
 def GetNumberOfSmallerRelativePrimes(value):
-    valueDivsSet = GetDivisorsSet(value)
+    valueDivs = GetDivisorsSortedArray(value)
     counter = 1
     for n in range(2, value):
-        nDivsSet = GetDivisorsSet(n)
-        if (nDivsSet.isdisjoint(valueDivsSet)):
+        nDivs = GetDivisorsSortedArray(n)
+        if (AreSortedArraysDisjointed(nDivs,valueDivs)):
             counter += 1       
     return counter
 

@@ -61,7 +61,11 @@ def GetNameValue(name):
     return sum
 
 
-
+def AreSortedArraysDisjointed(arr1, arr2):
+    for n in arr1:
+        if (IsInArray(arr2, n)):
+            return False
+    return True
 
 def IsInArray(array, value):
     return SearchArray(array, value) >= 0
@@ -72,12 +76,17 @@ def SearchArray(array, value):
     return SearchArrayRecursion(array, value, beg, end)
 
 def SearchArrayRecursion(array, value, beg, end):
-    halfDiff = (end - beg) / 2
-    if (halfDiff == 0):
-        return -1
+    diff = end - beg
+    halfDiff = diff / 2
 
     mid = beg + halfDiff
     midVal = array[mid]
+
+    if (halfDiff == 0):
+        if (value == midVal):
+            return mid
+        else:
+            return -1
 
     if (value == midVal):
         return mid
