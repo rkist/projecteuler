@@ -73,12 +73,14 @@ def GetClosestIntegerSquareRoot(n):
         return major
 
 
+
+
 def GetSmallerRelativePrimes(value):
     valueDivsSet = GetDivisorsSet(value)
     nArr = [1]
     for n in range(2, value):
         nDivsSet = GetDivisorsSet(n)
-        if (valueDivsSet.isdisjoint(nDivsSet)):
+        if (nDivsSet.isdisjoint(valueDivsSet)):
             nArr.append(n)        
     return nArr
 
@@ -87,7 +89,7 @@ def GetNumberOfSmallerRelativePrimes(value):
     counter = 1
     for n in range(2, value):
         nDivsSet = GetDivisorsSet(n)
-        if (valueDivsSet.isdisjoint(nDivsSet)):
+        if (nDivsSet.isdisjoint(valueDivsSet)):
             counter += 1       
     return counter
 
