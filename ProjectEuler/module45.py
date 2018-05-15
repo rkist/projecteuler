@@ -6,7 +6,7 @@ from FileHelpers import *
 from joblib import Parallel, delayed
 import multiprocessing
 
-def ParalelProcess(i):
+def ParallelProcess(i):
     if (IsInArray(pentagArr, x) and IsInArray(hexagArr, x)):
         return x
     return 0
@@ -30,7 +30,7 @@ def SolveProblem():
         hexagArr.append(z)
 
     #num_cores = multiprocessing.cpu_count()   
-    #results = Parallel(n_jobs=num_cores)(delayed(ParalelProcess)(i) for i in triangleArr)
+    #results = Parallel(n_jobs=num_cores)(delayed(ParallelProcess)(i) for i in triangleArr)
 
     #for res in results:
     #    if (res != 0):

@@ -14,6 +14,7 @@ def SolveProblem():
 
     maxProportion = 0
     maxProportionN = 0
+
     for n in range(2, 10**6+1):
         phi = GetNumberOfSmallerRelativePrimes(n)
         proportion = float(n)/float(phi)

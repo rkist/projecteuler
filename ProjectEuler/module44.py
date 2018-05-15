@@ -27,7 +27,7 @@ def SatisfyWeirdProperty(num1, num2):
         i += 1
     return satsDiff and satsSum
 
-def ParalelProcess(j):
+def ParallelProcess(j):
     for k in range(j,200 + 2*j):
         #print str(j) + "," + str(k)
         if (SatisfyWeirdProperty(j, k)):
@@ -40,7 +40,7 @@ def ParalelProcess(j):
 def SolveProblem():
 
     num_cores = multiprocessing.cpu_count()   
-    results = Parallel(n_jobs=num_cores)(delayed(ParalelProcess)(j) for j in range(1,2000))
+    results = Parallel(n_jobs=num_cores)(delayed(ParallelProcess)(j) for j in range(1,2000))
 
     for res in results:
         if (res != 0):
