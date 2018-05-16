@@ -1,5 +1,5 @@
 from math import *
-from ArrayHelpers import AreSortedArraysDisjointed
+from ArrayHelpers import AreSortedArraysDisjointed, MultiplyArrayValues, SumArrayValues, Permute, Combination
 
 def GetPrimesInRange(range):
     primes = []
@@ -36,10 +36,37 @@ def GetDivisorsSet(value):
     return divisorsSetsCache[value]
 
 
+def Factorate(value):
+    resultArray = []
+    curValue = value
+    n = 2
+    while (curValue != 1):
+        if (curValue % n == 0):
+            curValue = curValue / n
+            resultArray.append(n)
+        else:
+            n += 1
+    return resultArray
+
+def GetDivisors(value):
+    factors = Factorate(value)
+    factorsCombinations = Combination(factors)
+    divisors = set()
+    for comb in factorsCombinations:
+        mul = MultiplyArrayValues(comb)
+        divisors.add(mul)
+    return divisors
+
+
+
+
+
 def IsPrime(value):
     if (value < 2):
         return False
-    for divisor in range(2,int(sqrt(value) + 1)+1):
+
+    limit = int(sqrt(value) + 1)+1
+    for divisor in range(2,limit):
         if (value != divisor) and (value % divisor == 0):
             return False
     return True

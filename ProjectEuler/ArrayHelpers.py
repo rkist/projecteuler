@@ -6,6 +6,12 @@ def SumArrayValues(arr):
         sum += num
     return sum
 
+def MultiplyArrayValues(arr):
+    mul = 1
+    for num in arr:
+        mul *= num
+    return mul
+
 def IsPalindrome(arr):
     for index in range(0,len(arr)/2):
         if arr[index] != arr[-(index+1)]:
@@ -96,9 +102,27 @@ def SearchArrayRecursion(array, value, beg, end):
         return SearchArrayRecursion(array, value, mid, end)
 
 
-#TODO: combination
-def Combination(array):
-    pass
+  
+
+def Combination(array, combinationSize = 0):
+    combinations = []
+    for i in range(0,len(array)):
+        CombinationRecursion(i, array, [], combinations)
+    return combinations
+
+
+def CombinationRecursion(index, items, currentItem, combinations):
+    itemsLen = len(items)
+    if (index == itemsLen):
+        return
+
+    newItem = currentItem + [items[index]]
+    combinations.append(newItem)
+
+    for i in range(index, len(items)):        
+        CombinationRecursion(i+1, items, newItem, combinations)
+        
+        
 
 
 
