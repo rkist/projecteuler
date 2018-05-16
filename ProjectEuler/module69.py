@@ -15,6 +15,16 @@ def SolveProblem():
     maxProportion = 0
     maxProportionN = 0
 
+    print GetSmallerRelativePrimes(6)
+    print GetSmallerRelativePrimes2(6)
+
+    print GetSmallerRelativePrimes(12)
+    print GetSmallerRelativePrimes2(12)
+
+    
+    print GetSmallerRelativePrimes(20)
+    print GetSmallerRelativePrimes2(20)
+
     #for i in range(1,13):
     #    factors = Factorate(i)
     #    divisors = GetDivisors(i)
@@ -22,11 +32,17 @@ def SolveProblem():
 
     #    print ("%s \t %s \t %s" % (i, factors, divisors))
 
+    InitPrimesCache(1001)
 
+    print GetSmallerRelativePrimes(6)
+    print GetSmallerRelativePrimes2(6)
 
-    for n in range(2, 10**6+1):
-        phi = GetNumberOfSmallerRelativePrimes(n)
+    for n in range(2, 10**3+1):
+        phi = GetNumberOfSmallerRelativePrimes2(n)
         proportion = float(n)/float(phi)
+        #relativePrimes = GetSmallerRelativePrimes(n)
+
+        #print ("%s \t %s \t %s \t %s" % (n, phi, proportion, relativePrimes))
 
         if (proportion > maxProportion):
             print ("%s \t %s \t %s" % (n, phi, proportion))

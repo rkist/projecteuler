@@ -122,7 +122,7 @@ def CombinationRecursion(index, items, currentItem, combinations):
     newItem = currentItem + [items[index]]
     combinations.append(newItem)
 
-    for i in range(index, len(items)):        
+    for i in range(index, itemsLen):        
         CombinationRecursion(i+1, items, newItem, combinations)
         
         

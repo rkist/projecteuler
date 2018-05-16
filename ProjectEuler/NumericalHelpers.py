@@ -1,6 +1,23 @@
 from math import *
 from ArrayHelpers import AreSortedArraysDisjointed, MultiplyArrayValues, SumArrayValues, Permute, Combination
 
+def InitPrimesCache(v):
+    primesCache = GetPrimesInRange(range(v))
+
+primesCache = [2, 3, 5]
+def GetPrimesUpTo(value):
+    global primesCache
+    lastValInCache = primesCache[-1]
+    if (value < lastValInCache):
+        i = 0
+        while (value < primesCache[i]):
+            i += 1
+        return primesCache[:i+1]
+    else:
+        primes = GetPrimesInRange(range(lastValInCache+1, value))
+        primesCache += primes
+        return primesCache
+
 def GetPrimesInRange(range):
     primes = []
     for i in range:
@@ -110,11 +127,11 @@ def GetClosestIntegerSquareRoot(n):
 
 
 def GetSmallerRelativePrimes(value):
-    valueDivsSet = GetDivisorsSet(value)
+    valueDivs = GetDivisorsUsingCache(value)
     nArr = [1]
     for n in range(2, value):
-        nDivsSet = GetDivisorsSet(n)
-        if (nDivsSet.isdisjoint(valueDivsSet)):
+        nDivs = GetDivisorsUsingCache(n)
+        if (AreSortedArraysDisjointed(nDivs,valueDivs)):
             nArr.append(n)        
     return nArr
 
@@ -127,8 +144,38 @@ def GetNumberOfSmallerRelativePrimes(value):
             counter += 1       
     return counter
 
+def GetNumberOfSmallerRelativePrimes2(value):
+    return len(GetSmallerRelativePrimes2(value))
+
+def GetSmallerRelativePrimes2(value):
+    nSet = set()
+    factors = Factorate(value)
+    primes = GetPrimesUpTo(value)
+
+    for f in factors:
+        primesRepeat = [0] * len(primes)
+        GetSmallerRelativePrimes2PrimeRecursion(nSet, f, primes, primesRepeat, value)
+
+    relativePrimesSet = set(range(1,value)) - nSet
+
+    return  relativePrimesSet
 
 
+
+def GetSmallerRelativePrimes2PrimeRecursion(nSet, value, primes, repeat, limit):
+    n = value
+    for i in range(len(primes)):
+        n *= primes[i] ** repeat[i]
+
+    if (n > limit):
+        return
+
+    nSet.add(n)
+
+    for i in range(len(primes)):
+        newRepeat = repeat[:]
+        newRepeat[i] += 1
+        GetSmallerRelativePrimes2PrimeRecursion(nSet, value, primes, newRepeat, limit)
 
 
 
