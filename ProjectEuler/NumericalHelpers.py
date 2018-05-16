@@ -8,32 +8,32 @@ def GetPrimesInRange(range):
             primes.append(i)
     return primes 
 
-divisorsArrayCache = {}
-def GetDivisorsSortedArray(value):
-    if (not divisorsArrayCache.has_key(value)):
-        arr = []
-        for divisor in range(2,(value/2)+1):
-            if (value % divisor == 0):
-                arr.append(divisor)
-        arr.append(value)
+#divisorsArrayCache = {}
+#def GetDivisorsSortedArray(value):
+#    if (not divisorsArrayCache.has_key(value)):
+#        arr = []
+#        for divisor in range(2,(value/2)+1):
+#            if (value % divisor == 0):
+#                arr.append(divisor)
+#        arr.append(value)
 
-        divisorsArrayCache[value] = arr
+#        divisorsArrayCache[value] = arr
 
-    return divisorsArrayCache[value]
+#    return divisorsArrayCache[value]
 
 
-divisorsSetsCache = {}
-def GetDivisorsSet(value):
-    if (not divisorsSetsCache.has_key(value)):
-        divSet = set()
-        for divisor in range(2,(value/2)+1):
-            if (value % divisor == 0):
-                divSet.add(divisor)
-        divSet.add(value)
+#divisorsSetsCache = {}
+#def GetDivisorsSet(value):
+#    if (not divisorsSetsCache.has_key(value)):
+#        divSet = set()
+#        for divisor in range(2,(value/2)+1):
+#            if (value % divisor == 0):
+#                divSet.add(divisor)
+#        divSet.add(value)
 
-        divisorsSetsCache[value] = divSet
+#        divisorsSetsCache[value] = divSet
 
-    return divisorsSetsCache[value]
+#    return divisorsSetsCache[value]
 
 
 def Factorate(value):
@@ -58,7 +58,12 @@ def GetDivisors(value):
     return divisors
 
 
-
+divisorsSetsCache = {}
+def GetDivisorsUsingCache(value):
+    if (not divisorsSetsCache.has_key(value)):
+        divSet = GetDivisors(value)
+        divisorsSetsCache[value] = divSet
+    return divisorsSetsCache[value]
 
 
 def IsPrime(value):
@@ -114,10 +119,10 @@ def GetSmallerRelativePrimes(value):
     return nArr
 
 def GetNumberOfSmallerRelativePrimes(value):
-    valueDivs = GetDivisorsSortedArray(value)
+    valueDivs = GetDivisorsUsingCache(value)
     counter = 1
     for n in range(2, value):
-        nDivs = GetDivisorsSortedArray(n)
+        nDivs = GetDivisorsUsingCache(n)
         if (AreSortedArraysDisjointed(nDivs,valueDivs)):
             counter += 1       
     return counter

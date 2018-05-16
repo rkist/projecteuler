@@ -15,26 +15,26 @@ def SolveProblem():
     maxProportion = 0
     maxProportionN = 0
 
-    for i in range(1,13):
-        factors = Factorate(i)
-        divisors = GetDivisors(i)
+    #for i in range(1,13):
+    #    factors = Factorate(i)
+    #    divisors = GetDivisors(i)
 
 
-        print ("%s \t %s \t %s" % (i, factors, divisors))
+    #    print ("%s \t %s \t %s" % (i, factors, divisors))
 
 
 
-    #for n in range(2, 10**6+1):
-    #    phi = GetNumberOfSmallerRelativePrimes(n)
-    #    proportion = float(n)/float(phi)
+    for n in range(2, 10**6+1):
+        phi = GetNumberOfSmallerRelativePrimes(n)
+        proportion = float(n)/float(phi)
 
-    #    if (proportion > maxProportion):
-    #        print ("%s \t %s \t %s" % (n, phi, proportion))
-    #        maxProportion = proportion
-    #        maxProportionN = n
+        if (proportion > maxProportion):
+            print ("%s \t %s \t %s" % (n, phi, proportion))
+            maxProportion = proportion
+            maxProportionN = n
 
-    #    if (n % 1000 == 0):
-    #        print n
+        if (n % 1000 == 0):
+            print n
 
        
     return maxProportionN

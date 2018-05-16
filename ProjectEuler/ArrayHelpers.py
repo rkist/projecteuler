@@ -67,11 +67,14 @@ def GetNameValue(name):
     return sum
 
 
-def AreSortedArraysDisjointed(arr1, arr2):
-    for n in arr1:
-        if (IsInArray(arr2, n)):
-            return False
-    return True
+#def AreSortedArraysDisjointed(arr1, arr2):
+#    for n in arr1:
+#        if (IsInArray(arr2, n)):
+#            return False
+#    return True
+
+def AreSortedArraysDisjointed(set1, set2):
+    return set1.isdisjoint(set2)
 
 def IsInArray(array, value):
     return SearchArray(array, value) >= 0
