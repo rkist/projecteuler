@@ -150,7 +150,7 @@ def GetNumberOfSmallerRelativePrimes2(value):
 def GetSmallerRelativePrimes2(value):
     nSet = set()
     factors = Factorate(value)
-    primes = GetPrimesUpTo(value)
+    primes = GetPrimesUpTo(value/2 + 1)
 
     for f in factors:
         primesRepeat = [0] * len(primes)
