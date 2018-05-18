@@ -114,16 +114,16 @@ def Combination(array, combinationSize = 0):
     return combinations
 
 
-def CombinationRecursion(index, items, currentItem, combinations):
+def CombinationRecursion(index, items, arrayToAdd, combinations):
     itemsLen = len(items)
     if (index == itemsLen):
         return
 
-    newItem = currentItem + [items[index]]
-    combinations.append(newItem)
+    newArrayToAdd = arrayToAdd + [items[index]]
+    combinations.append(newArrayToAdd)
 
     for i in range(index, itemsLen):        
-        CombinationRecursion(i+1, items, newItem, combinations)
+        CombinationRecursion(i+1, items, newArrayToAdd, combinations)
         
         
 

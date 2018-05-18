@@ -1,9 +1,6 @@
 from math import *
 from ArrayHelpers import AreSortedArraysDisjointed, MultiplyArrayValues, SumArrayValues, Permute, Combination
 
-def InitPrimesCache(v):
-    primesCache = GetPrimesInRange(range(v))
-
 primesCache = [2, 3, 5]
 def GetPrimesUpTo(value):
     global primesCache
