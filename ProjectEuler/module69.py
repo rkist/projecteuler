@@ -9,24 +9,31 @@ from Memoize import *
 
 
 
+
+from gmpy import *
+#from utility import factor
+#from __future__ import division
+
+def phi(n):
+    res = n
+    Nfac = Factor(n)
+    for f in Nfac:
+        res = res*(1 - 1/f)
+    return res
+
+
+
+
+
 def SolveProblem():
     print __name__
 
-    #maxProportion = 0
-    #maxProportionN = 0
+
 
     nums = []
     for n in range(2, 1000001):
-        if IsPrime(n): 
-            continue
+        if is_prime(n): continue
         nums.append(n)
-
-    def phi(n):
-        res = n
-        Nfac = Factor(n)
-        for f in Nfac:
-            res = res*(1 - 1/f)
-        return res
 
     prior = 0
     for item in nums:
@@ -35,6 +42,9 @@ def SolveProblem():
         if val > prior:
             prior = val
             print item, ph, val
+
+    #maxProportion = 0
+    #maxProportionN = 0
 
 
     #for n in range(2, 10**3+1):
