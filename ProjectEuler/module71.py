@@ -8,7 +8,7 @@ from Memoize import *
 
 from sortedcollections import SortedDict
 
-LimitN = 8 + 1
+LimitN = 10**6 + 1
 
 def Simplify(n,d):
     i = 2
@@ -25,15 +25,35 @@ def Simplify(n,d):
 
 def SolveProblem():
     print __name__
-    orderedFractionsDic = SortedDict()
+
+    #orderedFractionsDic = SortedDict()
+
+    #for d in range(1, LimitN):
+    #    for n in range(1, d):
+    #        ratio = float(n)/float(d)
+    #        t = Simplify(n,d)   
+    #        orderedFractionsDic[ratio] = t
+           
+    #for key, val in orderedFractionsDic.iteritems():
+    #    print val, key
+
+
+    tressetimos = float(3)/float(7)
+
+    smallerDiff = 100000
+    nForSmallerDiff = 0
 
     for d in range(1, LimitN):
-        for n in range(1, d):
-            t = Simplify(n,d)
+
+        if (d % 1000 == 0):
+            print d
+
+        for n in range(int(d * tressetimos) - 1, int(d * tressetimos) + 1):
             ratio = float(n)/float(d)
-            orderedFractionsDic[ratio] = t
-           
-    for key, val in orderedFractionsDic.iteritems():
-        print val, key
+            diff = tressetimos - ratio
+            if (diff > 0 and abs(diff) < smallerDiff):
+                smallerDiff = diff
+                nForSmallerDiff = n
+                
        
-    return -1
+    return nForSmallerDiff
