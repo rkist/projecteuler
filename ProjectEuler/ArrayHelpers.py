@@ -128,6 +128,20 @@ def CombinationRecursion(index, items, arrayToAdd, combinations):
         
 
 
+def ArePermutations(nums): #if these numers are permutations of each other
+    numsAlgs = []
+    for num in nums:
+        numsAlgs.append(ConvertIntToIntArray(num))
+    
+    comparer = sorted(numsAlgs[0])
+
+    for numAlgs in numsAlgs:
+        if (comparer != sorted(numAlgs)):
+            return False
+    return True
+
+
+
 
 def Permute(array, permutationSize = 0): #Arranjo
     if (permutationSize == 0):

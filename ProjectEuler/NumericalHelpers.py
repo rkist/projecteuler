@@ -50,13 +50,27 @@ def GetPrimesInRange(range):
 #    return divisorsSetsCache[value]
 
 
+def GetUniquePrimeFactors(value):
+    resultSet = set()
+    loopLimit = value**0.5
+    n = 2
+    while (value != 1):
+        if (n > loopLimit):
+            n = value
+        if (value % n == 0):
+            value /= n
+            resultSet.add(n)  
+        else:
+            n += 1
+    return list(resultSet)
+
+
 def Factorate(value):
     resultArray = []
-    curValue = value
     n = 2
-    while (curValue != 1):
-        if (curValue % n == 0):
-            curValue = curValue / n
+    while (value != 1):
+        if (value % n == 0):
+            value /= n
             resultArray.append(n)
         else:
             n += 1
