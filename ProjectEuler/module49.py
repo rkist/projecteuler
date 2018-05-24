@@ -4,24 +4,6 @@ from FileHelpers import *
 from Parallel import *
 
 
-def ArePermutations(nums):
-    numsAlgs = []
-    for num in nums:
-        numsAlgs.append(ConvertIntToIntArray(num))
-    
-    comparer = sorted(numsAlgs[0])
-
-    for numAlgs in numsAlgs:
-        if (comparer != sorted(numAlgs)):
-            return False
-    return True
-
-
-
-
-
-
-
 def SolveProblem():
     print "."
 
