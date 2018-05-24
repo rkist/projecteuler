@@ -12,8 +12,6 @@ from Memoize import *
 def SolveProblem():
     print __name__
 
-    #nThatSatisfyPermutabilityProperty = []
-
     minProportion = 1000000000
     nWithMinProportion = 0
 
@@ -28,17 +26,10 @@ def SolveProblem():
         totient = dividend / divisor
         proportion = float(n) / float(totient)
         if  ArePermutations([n, totient]):
-            #nThatSatisfyPermutabilityProperty.append((n, totient, proportion))
             if (proportion < minProportion):
                 minProportion = proportion
                 nWithMinProportion = n
                 print n, totient, proportion
-
-
-    #for  n, totient, proportion in nThatSatisfyPermutabilityProperty:
-    #    if (proportion < minProportion):
-    #        minProportion = proportion
-    #        nWithMinProportion = n
 
        
     return nWithMinProportion
