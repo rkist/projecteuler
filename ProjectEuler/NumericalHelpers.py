@@ -273,8 +273,7 @@ def SimplifyFraction(n,d):
 
 def CanSimplifyFraction(n,d):
     i = 2
-    l = n
-    while(i <= l):
+    while(i <= n):
         if (n % i == 0 and d % i == 0):
             return True
         i += 1     

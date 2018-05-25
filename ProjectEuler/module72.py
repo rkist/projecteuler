@@ -10,26 +10,38 @@ LimitN = 10**6 + 1
 
 
 
+def aaa(d):
+    numUniqueFractions = 0;
+    factors = Factorate(d)
+    for n in xrange(1, d):
+        go = 1
+        for f in factors:
+            if (n % f == 0):   
+                go = 0
+                break
+
+        numUniqueFractions += go 
+
+
+        #if (not CanSimplifyFractionWithPrimes(n,d, factors)):
+        #    numUniqueFractions += 1  
+    
+    if (d % 1000 == 0):
+        print d, numUniqueFractions
+
+    return numUniqueFractions
+
+
+
 def SolveProblem():
     print __name__
 
     #factors = GetPrimesUpTo(LimitN)
-
-    numUniqueFractions = 0;
-    for d in xrange(1, LimitN):
-
-        if (d % 1000 == 0):
-            print d, numUniqueFractions
-
-        factors = Factorate(d)
-
-        for n in xrange(1, d):
-            #ratio = float(n)/float(d)
-            if (not CanSimplifyFractionWithPrimes(n,d, factors)):
-                numUniqueFractions += 1       
+   
+    results = ParallelProcess(aaa, range(1, LimitN), 5)   #map
 
        
-    return numUniqueFractions
+    return SumArrayValues(results) #reduce
 
 
 #1000 303791
