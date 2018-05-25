@@ -67,8 +67,11 @@ def GetUniquePrimeFactors(value):
 
 def Factorate(value):
     resultArray = []
+    loopLimit = value**0.5
     n = 2
     while (value != 1):
+        if (n > loopLimit):
+            n = value
         if (value % n == 0):
             value /= n
             resultArray.append(n)
@@ -252,6 +255,43 @@ def Factor(n):
         q = step(d)
         d += 1
     return q <= maxq and [q] + Factor(n//q) or [n]
+
+
+def SimplifyFraction(n,d):
+    i = 2
+    while(i <= n):
+        if (n % i == 0 and d % i == 0):
+            n /= i
+            d /= i
+        else:
+            i += 1     
+
+    return (n,d)
+
+
+
+
+def CanSimplifyFraction(n,d):
+    i = 2
+    l = n
+    while(i <= l):
+        if (n % i == 0 and d % i == 0):
+            return True
+        i += 1     
+
+    return False
+
+def CanSimplifyFractionWithPrimes(n, d, primes):
+    for p in primes:
+        if (n % p == 0 and d % p == 0):
+            return True  
+
+        if (p > n):
+            return False       
+
+    return False
+
+
 
 
 #EXPERIMENTAL

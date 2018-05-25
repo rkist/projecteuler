@@ -6,36 +6,40 @@ from PrimesCache import *
 from GraphHelpers import *
 from Memoize import *
 
-from sortedcollections import SortedDict
-
-LimitN = 8 + 1
-
-def Simplify(n,d):
-    i = 2
-    while(i <= n):
-        if (n % i == 0 and d % i == 0):
-            n /= i
-            d /= i
-        else:
-            i += 1     
-
-    return (n,d)
+LimitN = 10**6 + 1
 
 
 
 def SolveProblem():
     print __name__
 
-    orderedFractionsDic = SortedDict()
+    #factors = GetPrimesUpTo(LimitN)
 
-    for d in range(1, LimitN):
-        for n in range(1, d):
-            ratio = float(n)/float(d)
-            t = Simplify(n,d)   
-            orderedFractionsDic[ratio] = t
-           
-    for key, val in orderedFractionsDic.iteritems():
-        print val, key
-                
+    numUniqueFractions = 0;
+    for d in xrange(1, LimitN):
+
+        if (d % 1000 == 0):
+            print d, numUniqueFractions
+
+        factors = Factorate(d)
+
+        for n in xrange(1, d):
+            #ratio = float(n)/float(d)
+            if (not CanSimplifyFractionWithPrimes(n,d, factors)):
+                numUniqueFractions += 1       
+
        
-    return -1
+    return numUniqueFractions
+
+
+#1000 303791
+#2000 1215787
+#3000 2735387
+#4000 4862001
+#5000 7598457
+#6000 10941563
+#7000 14892745
+#8000 19452581
+#9000 24619117
+#10000 30393485
+#11000 36778369
