@@ -6,49 +6,40 @@ from PrimesCache import *
 from GraphHelpers import *
 from Memoize import *
 
-LimitN = 12000 + 1
 
-LowLimit = 1.0/3.0
-HighLimit = 1.0/2.0
+def Step(value):
+    valueArr = ConvertIntToIntArray(value)
+    factorialSum = 0
+    for n in valueArr:
+        factorial = Factorial(n)
+        factorialSum += factorial
 
-
-def aaa(d):
-    numUniqueFractions = 0;
-    factors = Factorate(d)
-    for n in xrange(1, d):
-        fraction = float(n)/float(d)
-        if (fraction > LowLimit and fraction < HighLimit):
-            go = 1
-            for f in factors:
-                if (n % f == 0):   
-                    go = 0
-                    break
-
-            numUniqueFractions += go 
-    
-    if (d % 1000 == 0):
-        print d, numUniqueFractions
-
-    return numUniqueFractions
+    return factorialSum
 
 
+def FindLoop(value):
+    pass
 
 def SolveProblem():
     print __name__
+
+    print Step(145)
+    print Step(169)
+    print Step(871)
+    print Step(Step(871))
+    print Step(Step(872))
+
+    return -1
+
+    
    
-    results = ParallelProcess(aaa, range(1, LimitN), 4)   #map
-       
-    return SumArrayValues(results) #reduce
+    #results = ParallelProcess(aaa, range(1, LimitN), 4)   #map       
+    #return SumArrayValues(results) #reduce
 
 
-#1000 303791
-#2000 1215787
-#3000 2735387
-#4000 4862001
-#5000 7598457
-#6000 10941563
-#7000 14892745
-#8000 19452581
-#9000 24619117
-#10000 30393485
-#11000 36778369
+
+#145
+#363601
+#45361
+#871
+#872
