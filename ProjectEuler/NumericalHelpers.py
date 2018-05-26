@@ -290,6 +290,20 @@ def CanSimplifyFractionWithPrimes(n, d, primes):
 
     return False
 
+def IsSquareTriangle(a, b, c):
+    cc =  (a*a + b*b)
+    return cc == c*c
+
+def GetSquareTrianglesWithPerimeter(perimeter):
+    triangles = []
+    for a in range(1, perimeter):
+        for b in range(a, (perimeter - a)):
+            c = perimeter - (a + b)
+
+            if (IsSquareTriangle(a, b, c)):
+                triangles.append((a,b,c))
+    return triangles
+
 
 
 

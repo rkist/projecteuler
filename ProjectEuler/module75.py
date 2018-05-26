@@ -7,28 +7,15 @@ from GraphHelpers import *
 from Memoize import *
 
 
-def SquareTriangle(a, b, c):
-    cc =  (a*a + b*b)
-    return cc == c*c
-
-def GetSquareTrianglesWithPerimeter(perimeter):
-    triangles = []
-    for a in range(1, perimeter):
-        for b in range(a, (perimeter - a)):
-            c = perimeter - (a + b)
-
-            if (SquareTriangle(a, b, c)):
-                triangles.append((a,b,c))
-    return triangles
-
 
 def HasJustOneSquareTriangle(perimeter):
     counter = 0
-    for a in range(1, perimeter):
+    limit = perimeter / 2
+    for a in range(1, limit):
         for b in range(a, (perimeter - a)):
             c = perimeter - (a + b)
 
-            if (SquareTriangle(a, b, c)):
+            if (IsSquareTriangle(a, b, c)):
                 counter += 1
 
             if (counter > 1):
@@ -40,7 +27,7 @@ def HasJustOneSquareTriangle(perimeter):
 def SolveProblem():
     print __name__
 
-    print SquareTriangle(3,4,5)
+    print IsSquareTriangle(3,4,5)
     print GetSquareTrianglesWithPerimeter(240)
     print HasJustOneSquareTriangle(12)
     print HasJustOneSquareTriangle(240)
@@ -63,6 +50,9 @@ def SolveProblem():
 
 
 #1000 112
+#2000 222
+#3000 332
+#4000 446
     
    
 
