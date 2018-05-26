@@ -7,14 +7,62 @@ from GraphHelpers import *
 from Memoize import *
 
 
+def SquareTriangle(a, b, c):
+    cc =  (a*a + b*b)
+    return cc == c*c
+
+def GetSquareTrianglesWithPerimeter(perimeter):
+    triangles = []
+    for a in range(1, perimeter):
+        for b in range(a, (perimeter - a)):
+            c = perimeter - (a + b)
+
+            if (SquareTriangle(a, b, c)):
+                triangles.append((a,b,c))
+    return triangles
+
+
+def HasJustOneSquareTriangle(perimeter):
+    counter = 0
+    for a in range(1, perimeter):
+        for b in range(a, (perimeter - a)):
+            c = perimeter - (a + b)
+
+            if (SquareTriangle(a, b, c)):
+                counter += 1
+
+            if (counter > 1):
+                return False
+                
+    return counter == 1
+
+
 def SolveProblem():
     print __name__
 
-    numOfSixtySized = 0
+    print SquareTriangle(3,4,5)
+    print GetSquareTrianglesWithPerimeter(240)
+    print HasJustOneSquareTriangle(12)
+    print HasJustOneSquareTriangle(240)
+    print HasJustOneSquareTriangle(13)
 
-    return numOfSixtySized
+    counter = 0
 
+    for perimeter in range(12, 1500000 + 1):
+        #triangles = GetSquareTrianglesWithPerimeter(perimeter)
+        #numberOfTriangles = len(triangles)
+
+        if (HasJustOneSquareTriangle(perimeter)):
+            counter += 1
+
+        if (perimeter % 1000 == 0):
+            print perimeter, counter
+   
+
+    return counter
+
+
+#1000 112
     
    
-    #results = ParallelProcess(aaa, range(1, LimitN), 4)   #map       
-    #return SumArrayValues(results) #reduce
+
