@@ -29,13 +29,28 @@ def SolveProblem():
 
     print GetSquareTrianglesWithPerimeter(240)
 
-    for m in range(100):
-        for n in range(100):
+    sizeOfArray = 1500001
+
+    numTrianglesWithPerimeter = [0] * sizeOfArray
+
+    for m in range(1, 10):
+        for n in range(1, m):
             a = m*m - n*n
             b = 2*m*n
             c = m*m + n*n
             perimeter = 2 * (m * (m + n))
-            print perimeter
+            #print a, b, c, perimeter
+            if (perimeter < sizeOfArray):
+                numTrianglesWithPerimeter[perimeter] += 1
+
+    for p in range(sizeOfArray):
+        n = numTrianglesWithPerimeter[p]
+        if (n > 0):
+            print p, n, len(GetSquareTrianglesWithPerimeter(p))
+             
+
+
+            
 
 
 
