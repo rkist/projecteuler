@@ -8,42 +8,48 @@ from Memoize import *
 
 
 
-def HasJustOneSquareTriangle(perimeter):
-    counter = 0
-    limit = perimeter / 2
-    for a in range(1, limit):
-        for b in range(a, (perimeter - a)):
-            c = perimeter - (a + b)
+#def HasJustOneSquareTriangle(perimeter):
+#    counter = 0
+#    limit = perimeter / 2
+#    for a in range(1, limit):
+#        for b in range(a, (perimeter - a)):
+#            c = perimeter - (a + b)
 
-            if (IsSquareTriangle(a, b, c)):
-                counter += 1
+#            if (IsSquareTriangle(a, b, c)):
+#                counter += 1
 
-            if (counter > 1):
-                return False
+#            if (counter > 1):
+#                return False
                 
-    return counter == 1
+#    return counter == 1
 
 
 def SolveProblem():
     print __name__
 
-    print IsSquareTriangle(3,4,5)
     print GetSquareTrianglesWithPerimeter(240)
-    print HasJustOneSquareTriangle(12)
-    print HasJustOneSquareTriangle(240)
-    print HasJustOneSquareTriangle(13)
+
+    for m in range(100):
+        for n in range(100):
+            a = m*m - n*n
+            b = 2*m*n
+            c = m*m + n*n
+            perimeter = 2 * (m * (m + n))
+            print perimeter
+
+
 
     counter = 0
 
-    for perimeter in range(12, 1500000 + 1):
-        #triangles = GetSquareTrianglesWithPerimeter(perimeter)
-        #numberOfTriangles = len(triangles)
+    #for perimeter in range(12, 1500000 + 1):
+    #    #triangles = GetSquareTrianglesWithPerimeter(perimeter)
+    #    #numberOfTriangles = len(triangles)
 
-        if (HasJustOneSquareTriangle(perimeter)):
-            counter += 1
+    #    if (HasJustOneSquareTriangle(perimeter)):
+    #        counter += 1
 
-        if (perimeter % 1000 == 0):
-            print perimeter, counter
+    #    if (perimeter % 1000 == 0):
+    #        print perimeter, counter
    
 
     return counter
