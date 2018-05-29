@@ -28,11 +28,7 @@ def GenerateSumsCombinationRecursion2(finalSum, partialArray, lastAddedValue):
 def SolveProblem():
     print __name__
 
-    
-    for n in range(1,20):
-        print len(GenerateSumsCombinations(n))
-
-    number = 100
+    number = 5
     sums = GenerateSumsCombinations2(number)
     #print sums
        

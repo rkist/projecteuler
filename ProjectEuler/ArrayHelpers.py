@@ -131,7 +131,6 @@ def CombinationRecursion(index, items, arrayToAdd, combinations):
 def GenerateSumsCombinations(number):
     result = []
     for n in range(1,number):
-        print n, len(result)
         result += GenerateSumsCombinationRecursion(number, [n])
     return result
 
@@ -154,7 +153,6 @@ def GenerateSumsCombinationRecursion(finalSum, partialArray):
 def GenerateSumsPermutations(number):
     result = []
     for n in range(1,number):
-        print n, len(result)
         result += GenerateSumsPermutationRecursion(number, [n])
     return result
 
