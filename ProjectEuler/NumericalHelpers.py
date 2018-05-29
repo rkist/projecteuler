@@ -280,6 +280,15 @@ def CanSimplifyFraction(n,d):
 
     return False
 
+def AreCoprime(m,n):
+    i = 2
+    limit = max(m,n)
+    while(i <= limit):
+        if (m % i == 0 and n % i == 0):
+            return False
+        i += 1  
+    return True
+
 def CanSimplifyFractionWithPrimes(n, d, primes):
     for p in primes:
         if (n % p == 0 and d % p == 0):

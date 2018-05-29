@@ -7,65 +7,48 @@ from GraphHelpers import *
 from Memoize import *
 
 
-
-#def HasJustOneSquareTriangle(perimeter):
-#    counter = 0
-#    limit = perimeter / 2
-#    for a in range(1, limit):
-#        for b in range(a, (perimeter - a)):
-#            c = perimeter - (a + b)
-
-#            if (IsSquareTriangle(a, b, c)):
-#                counter += 1
-
-#            if (counter > 1):
-#                return False
-                
-#    return counter == 1
-
-
 def SolveProblem():
     print __name__
-
-    print GetSquareTrianglesWithPerimeter(240)
 
     sizeOfArray = 1500001
 
     numTrianglesWithPerimeter = [0] * sizeOfArray
 
-    for m in range(1, 10):
-        for n in range(1, m):
+    for m in range(1, int(sqrt(sizeOfArray))):
+        
+        start = (m % 2) + 1
+        for n in xrange(start, m, 2):
+
+            if (not AreCoprime(m,n)):
+                continue
+
             a = m*m - n*n
             b = 2*m*n
             c = m*m + n*n
-            perimeter = 2 * (m * (m + n))
-            #print a, b, c, perimeter
-            if (perimeter < sizeOfArray):
-                numTrianglesWithPerimeter[perimeter] += 1
+            semiperimeter = (m * (m + n))
+            perimeter = a + b + c
+            #perimeter = semiperimeter * 2
+
+            k = 1
+            paux = perimeter * k
+
+            while (paux < sizeOfArray):                    
+                numTrianglesWithPerimeter[paux] += 1
+                k += 1
+                paux = perimeter * k
+                
+    counter = 0
 
     for p in range(sizeOfArray):
         n = numTrianglesWithPerimeter[p]
-        if (n > 0):
-            print p, n, len(GetSquareTrianglesWithPerimeter(p))
-             
 
+        #triangles = GetSquareTrianglesWithPerimeter(p)
+        #trianglesLen = len(triangles)
+        #if (trianglesLen != n):
+        #    print p, n, trianglesLen, triangles
 
-            
-
-
-
-    counter = 0
-
-    #for perimeter in range(12, 1500000 + 1):
-    #    #triangles = GetSquareTrianglesWithPerimeter(perimeter)
-    #    #numberOfTriangles = len(triangles)
-
-    #    if (HasJustOneSquareTriangle(perimeter)):
-    #        counter += 1
-
-    #    if (perimeter % 1000 == 0):
-    #        print perimeter, counter
-   
+        if (n == 1):
+            counter += 1
 
     return counter
 
