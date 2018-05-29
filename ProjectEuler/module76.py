@@ -9,7 +9,14 @@ from Memoize import *
 
 
 
+
 def SolveProblem():
     print __name__
+
+    number = 5
+
+    sums = GenerateSumsCombinations(number)
+
+    print sums
        
-    return -1
+    return len(sums)

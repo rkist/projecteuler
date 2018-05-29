@@ -124,6 +124,50 @@ def CombinationRecursion(index, items, arrayToAdd, combinations):
 
     for i in range(index, itemsLen):        
         CombinationRecursion(i+1, items, newArrayToAdd, combinations)
+
+
+
+
+def GenerateSumsCombinations(number):
+    result = []
+    for n in range(1,number):
+        print n, len(result)
+        result += GenerateSumsCombinationRecursion(number, [n])
+    return result
+
+def GenerateSumsCombinationRecursion(finalSum, partialArray):
+    partialSum = SumArrayValues(partialArray)
+    if (partialSum == finalSum):
+        return [partialArray]
+
+    lastAddedValue = partialArray[-1]
+
+    sums = []
+    for n in range(lastAddedValue, finalSum - partialSum + 1):
+        newPartialArray = partialArray + [n]
+        sums += GenerateSumsCombinationRecursion(finalSum, newPartialArray)
+    return sums
+
+
+
+
+def GenerateSumsPermutations(number):
+    result = []
+    for n in range(1,number):
+        print n, len(result)
+        result += GenerateSumsPermutationRecursion(number, [n])
+    return result
+
+def GenerateSumsPermutationRecursion(finalSum, partialArray):
+    partialSum = SumArrayValues(partialArray)
+    if (partialSum == finalSum):
+        return [partialArray]
+
+    sums = []
+    for n in range(1, finalSum - partialSum + 1):
+        newPartialArray = partialArray + [n]
+        sums += GenerateSumsPermutationRecursion(finalSum, newPartialArray)
+    return sums
         
         
 
