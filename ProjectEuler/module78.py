@@ -39,7 +39,7 @@ def p(n):
         pent = 0
         while (pent < n):
             pent = PentagonalNumber(k)
-            a = int((-1)**(k-1) * p(n-pent))
+            a = int((-1)**(k-1)) * p(n-pent)
             res += a
             k+=1
         
@@ -47,7 +47,7 @@ def p(n):
         pent = 0
         while (pent < n):
             pent = PentagonalNumber(-k)
-            a = int((-1)**(-k-1) * p(n-pent))
+            a = int((-1)**(-k-1)) * p(n-pent)
             res += a
             k+=1
 
@@ -65,7 +65,7 @@ def SolveProblem():
     while (sums % 1000000 != 0):
         number += 1 
         sums = p(number)
-        print number, sums
+        #print number, sums
 
         
     return number

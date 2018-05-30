@@ -39,6 +39,7 @@
     <Compile Include="Memoize.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="module79.py" />
     <Compile Include="module78.py" />
     <Compile Include="module77.py" />
     <Compile Include="module76.py" />
