@@ -224,6 +224,7 @@
     <Content Include="input\input54.txt" />
     <Content Include="input\input59.txt" />
     <Content Include="input\input67.txt" />
+    <Content Include="input\input79.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="input\" />
