@@ -27,14 +27,45 @@ def GenerateSumsCombinationRecursion2(finalSum, partialSum, lastAddedValue):
         combinationsCache[k] = sums
     return combinationsCache[k]
 
+
+pCache = {0:1, 1:1, 2:2, 3:3, 4:5, 5:7}
+def p(n):
+    if (n < 0):
+        return 0
+
+    if (not pCache.has_key(n)):       
+        res = 0
+        k = 1
+        pent = 0
+        while (pent < n):
+            pent = PentagonalNumber(k)
+            a = int((-1)**(k-1) * p(n-pent))
+            res += a
+            k+=1
+        
+        k = 1
+        pent = 0
+        while (pent < n):
+            pent = PentagonalNumber(-k)
+            a = int((-1)**(-k-1) * p(n-pent))
+            res += a
+            k+=1
+
+        pCache[n] = res
+
+    return pCache[n]
+
+
 def SolveProblem():
     print __name__
 
     number = 1
-    sums = GenerateSumsCombinations2(number)
+    sums = p(number)
+
     while (sums % 1000000 != 0):
         number += 1 
-        sums = GenerateSumsCombinations2(number)
+        sums = p(number)
         print number, sums
+
         
     return number
