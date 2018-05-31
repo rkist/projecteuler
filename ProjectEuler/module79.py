@@ -15,12 +15,20 @@ def GenPassword(passwdsEntries):
     return passwords
 
 
-def GenPasswordRecursion(index, passwdsEntries, passwords):
-    passwdsEntriesLen = len(passwdsEntries)
-    for i in range(index, passwdsEntriesLen):
-        entry = passwdsEntries[i]
-        if (len(passwords) == 0):
-            passwords.append([entry[0], entry[1]])
+def GenPasswordRecursion(index, passwordsEntries, passwords):
+    passwordsEntriesLen = len(passwordsEntries)
+    if (index == passwordsEntriesLen):
+        return
+
+    currentEntry = passwordsEntries[index]
+    if (len(passwords) == 0):
+        passwords.append([currentEntry[0], currentEntry[1]])   
+        
+    newIndex = index + 1
+    
+    for password in passwords:
+        GenPasswordRecursion(i, passwordsEntries, passwords)
+        
 
 
 
