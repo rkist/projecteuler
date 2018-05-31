@@ -9,11 +9,19 @@ from Memoize import *
 
 def GenPassword(passwdsEntries):
     passwords = []
-    for entry in passwdsEntries:
+
+    GenPasswordRecursion(0, passwdsEntries, passwords)
+
+    return passwords
+
+
+def GenPasswordRecursion(index, passwdsEntries, passwords):
+    passwdsEntriesLen = len(passwdsEntries)
+    for i in range(index, passwdsEntriesLen):
+        entry = passwdsEntries[i]
         if (len(passwords) == 0):
             passwords.append([entry[0], entry[1]])
 
-    return passwords
 
 
 
