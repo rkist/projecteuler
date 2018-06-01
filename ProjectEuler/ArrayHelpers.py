@@ -12,6 +12,13 @@ def MultiplyArrayValues(arr):
         mul *= num
     return mul
 
+def FindList(element, list_element):
+    try:
+        index_element = list_element.index(element)
+        return index_element
+    except ValueError:
+        return -1
+
 def IsPalindrome(arr):
     for index in range(0,len(arr)/2):
         if arr[index] != arr[-(index+1)]:
