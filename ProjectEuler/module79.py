@@ -23,10 +23,13 @@ def GenPasswordRecursion(index, passwordsEntries, password, possiblePasswordsLis
 
     currentEntry = passwordsEntries[index]
     newIndex = index + 1
+
+    indexOf0 = FindList(currentEntry[0], password) 
+    indexOf1 = FindList(currentEntry[1], password)
     
     
-    if (currentEntry[0] not in password):
-        stopIndex = FindList(currentEntry[1], password)
+    if (indexOf0 < 0):
+        stopIndex = indexOf1
         if (stopIndex < 0):
             stopIndex = len(password)
 
@@ -34,13 +37,13 @@ def GenPasswordRecursion(index, passwordsEntries, password, possiblePasswordsLis
             newPassword = password[:i] + [currentEntry[0]] + password[i:]
             GenPasswordRecursion(newIndex, passwordsEntries, newPassword, possiblePasswordsList)
 
-    if (currentEntry[1] not in password):
-        startIndex = FindList(currentEntry[0], password) 
+    if (indexOf1 < 0):
+        startIndex = indexOf0
         if (startIndex < 0):
             stopIndex = 0
 
         for i in range(startIndex, len(password)):
-            newPassword = password[:i] + [currentEntry[0]] + password[i:]
+            newPassword = password[:i] + [currentEntry[1]] + password[i:]
             GenPasswordRecursion(newIndex, passwordsEntries, newPassword, possiblePasswordsList)
 
     #exists        
