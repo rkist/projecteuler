@@ -6,62 +6,102 @@ from PrimesCache import *
 from GraphHelpers import *
 from Memoize import *
 
-
-def GenPassword(passwdsEntries):
-    passwords = []
+matrix_size = 10
+   
+def from_index_to_matrix(index):
+    return int(index / 10), int(index % 10)
     
-    GenPasswordRecursion(1, passwdsEntries, passwdsEntries[0], passwords)
+def from_matrix_to_index(matrixPos):
+    return matrixPos[0] * 10 + matrixPos[1]  
+    
+def calc_vector(lastPos, destiny):
+    xDiff = destiny[0] - lastPos[0]
+    yDiff = destiny[1] - lastPos[1]
+    if (xDiff == 0):
+        x = 0
+    else:
+        x = int((xDiff) / abs(xDiff))
+        
+    if (yDiff == 0):
+        y = 0
+    else:
+        y = int((yDiff) / abs(yDiff))   
+    
+    return (x, y)
 
-    return passwords
+def four_pass(stations):
+    print(stations)
+#     print(from_matrix_to_index(from_index_to_matrix(56)))
+    
+#     lastPos = (6,1)
+#     destiny = (1,1)
+#     print(calc_vector(lastPos, destiny))
+    
+    stationsPos = [from_index_to_matrix(i) for i in stations]
+    posPaths = []    
+    for i, pos in enumerate(stationsPos):
+        remainingPos = set(stationsPos[i+1:])
+        print(posPaths, pos, remainingPos)
+        posPaths = calcPath(posPaths, pos, remainingPos, 0)   
 
-
-def GenPasswordRecursion(index, passwordsEntries, password, possiblePasswordsList):
-    passwordsEntriesLen = len(passwordsEntries)
-    if (index == passwordsEntriesLen):
-        possiblePasswordsList.append(password)
-        return
-
-    currentEntry = passwordsEntries[index]
-    newIndex = index + 1
-
-    indexOf0 = FindList(currentEntry[0], password) 
-    indexOf1 = FindList(currentEntry[1], password)
+        
+    path = [from_matrix_to_index(p) for p in posPaths]   
+    print(path)
+    
+    return path
+         
     
     
-    if (indexOf0 < 0):
-        stopIndex = indexOf1
-        if (stopIndex < 0):
-            stopIndex = len(password)
+def calcPath(path, destiny, remainingStations, stackSize):
+    if (path == None or stackSize > 15):
+        return None
 
-        for i in range(0,stopIndex):
-            newPassword = password[:i] + [currentEntry[0]] + password[i:]
-            GenPasswordRecursion(newIndex, passwordsEntries, newPassword, possiblePasswordsList)
+    pathSize = len(path)
+    if (pathSize == 0):
+        return [destiny]
 
-    if (indexOf1 < 0):
-        startIndex = indexOf0
-        if (startIndex < 0):
-            stopIndex = 0
+    lastPosition = path[pathSize-1]
 
-        for i in range(startIndex, len(password)):
-            newPassword = password[:i] + [currentEntry[1]] + password[i:]
-            GenPasswordRecursion(newIndex, passwordsEntries, newPassword, possiblePasswordsList)
+    if (lastPosition == destiny):
+        return path
 
-    #exists        
+    if (lastPosition in remainingStations):
+        return None
+        
+    vector = calc_vector(lastPosition, destiny)    
+        
+    position0 = (lastPosition[0] + vector[0], lastPosition[1])
+    position1 = (lastPosition[0], lastPosition[1] + vector[1])
+    position2 = (lastPosition[0] - vector[0], lastPosition[1])
+    position3 = (lastPosition[0], lastPosition[1] - vector[1])
+    
+    positions = [position3, position2, position1, position0]    
+    
+    paths = []
 
+    for position in positions:
+        if (position[0] >= 0 and position[0] < matrix_size and position[1] >= 0 and  position[1] < matrix_size):
+            if (position not in path):  
+                p = calcPath(path[:] + [position], destiny, remainingStations, stackSize + 1)
+                if (p != None):
+                    paths.append(p)
 
+    if (len(paths) == 0):
+        return None
+
+    sortedPaths = sorted(paths, key = lambda x: len(x))
+            
+    return sortedPaths[0]
 
 
 def SolveProblem():
     print __name__
 
-    pwds = ReadCardsFile("input/input79.txt")
-    passwdsEntries = []
-    for pwd in pwds:
-        passwdsEntries.append([pwd[0], pwd[1]])
-        passwdsEntries.append([pwd[1], pwd[2]])
-        passwdsEntries.append([pwd[0], pwd[2]])
-       
-    passwd = GenPassword(passwdsEntries)
-    print passwd
+    stations = [37,61,92,36]
+    path = four_pass(stations)
 
-    return -1
+    print(len(path))
+    print([37,27,26,25,24,23,22,21,31,41,51,61,71,81,91,92,93,94,95,96,86,76,66,56,46,36])             
+    print(path)
+       
+    return path
