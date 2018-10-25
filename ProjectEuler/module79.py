@@ -75,7 +75,7 @@ def calcPath(path, destiny, remainingStations, stackSize):
     position2 = (lastPosition[0] - vector[0], lastPosition[1])
     position3 = (lastPosition[0], lastPosition[1] - vector[1])
     
-    positions = [position3, position2, position1, position0]    
+    positions = [position1, position0, position2, position3]    
     
     paths = []
 
@@ -94,6 +94,8 @@ def calcPath(path, destiny, remainingStations, stackSize):
     return sortedPaths[0]
 
 
+
+
 def SolveProblem():
     print __name__
 
@@ -104,4 +106,4 @@ def SolveProblem():
     print([37,27,26,25,24,23,22,21,31,41,51,61,71,81,91,92,93,94,95,96,86,76,66,56,46,36])             
     print(path)
        
-    return path
+    return f

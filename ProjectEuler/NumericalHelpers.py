@@ -213,14 +213,55 @@ def SmallerIntSqrt(n):
 
 
 
-fibonacciArray = [1,1,2,3]
-def Fibonacci(n): 
-    nMinusOne = n-1
-    if (nMinusOne < len(fibonacciArray)):
-        return fibonacciArray[nMinusOne]
 
-    fibonacciArray.append(Fibonacci(nMinusOne) + Fibonacci(nMinusOne-1))
-    return fibonacciArray[nMinusOne]
+
+
+def Fibonacci(n):  
+  if (n < 0):
+      return int((-1)**(n-1))*f2(-n)
+  return f2(n)
+
+
+#fn2 = 0
+#def Fibonacci2(n):  
+#  global fn2
+
+#  fn2 = 0
+#  if (n < 0):
+#      return int((-1)**(n-1))*f2(-n)
+#  return f2(n)
+  
+#def f(n):
+#  global fn2
+#  if (n == 1 or n == 0):
+#      return n
+#  fn1 = f(n-1)
+#  r = fn2 + fn1
+#  fn2 = fn1
+#  return r 
+
+
+#fibDic = {0:0,1:1,2:1,3:2,4:3,5:5,6:8}
+#def fib(n):
+#    for i in range(n+1):           
+#        if (i not in fibDic):
+#            fibDic[i] = fibDic[i-2] + fibDic[i-1]    
+#    return fibDic[n]  
+
+
+
+def f2(n):
+    fn2 = 0
+    fn1 = 1
+    fn = n
+    for i in xrange(n-1):           
+        fn = fn1 + fn2
+        fn2 = fn1
+        fn1 = fn
+            
+    return fn
+
+
 
 def TriangleNumber(n):
     res = (n * (n + 1)) / 2
