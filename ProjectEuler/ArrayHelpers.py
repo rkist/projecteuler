@@ -12,6 +12,18 @@ def MultiplyArrayValues(arr):
         mul *= num
     return mul
 
+def Range(sortedArr):
+    return sortedArr[len(sortedArr)-1] - sortedArr[0]
+    
+def Average(arr):
+    return SumArrayValues(arr)/float(len(arr))
+    
+def Median(sortedArr):
+    l = len(sortedArr)
+    if (l % 2 == 1):
+        return sortedArr[l/2]
+    return (sortedArr[(l/2)-1] + sortedArr[(l/2)])/float(2)
+
 def FindList(element, list_element):
     try:
         index_element = list_element.index(element)
@@ -136,13 +148,12 @@ def CombinationRecursion(index, items, arrayToAdd, combinations):
 
 
 def GenerateSumsCombinations(number):
-    result = []
+    result = [[number]]
     for n in range(1,number):
-        result += GenerateSumsCombinationRecursion(number, [n])
+        result += GenerateSumsCombinationRecursion(number, [n], n)
     return result
 
-def GenerateSumsCombinationRecursion(finalSum, partialArray):
-    partialSum = SumArrayValues(partialArray)
+def GenerateSumsCombinationRecursion(finalSum, partialArray, partialSum):
     if (partialSum == finalSum):
         return [partialArray]
 
@@ -150,28 +161,23 @@ def GenerateSumsCombinationRecursion(finalSum, partialArray):
 
     sums = []
     for n in range(lastAddedValue, finalSum - partialSum + 1):
-        newPartialArray = partialArray + [n]
-        sums += GenerateSumsCombinationRecursion(finalSum, newPartialArray)
+        sums += GenerateSumsCombinationRecursion(finalSum, partialArray + [n], partialSum + n)
     return sums
 
 
-
-
 def GenerateSumsPermutations(number):
-    result = []
-    for n in range(1,number):
-        result += GenerateSumsPermutationRecursion(number, [n])
+    result = [[number]]
+    for n in xrange(1,number):
+        result += GenerateSumsPermutationRecursion(number, [n], n)
     return result
 
-def GenerateSumsPermutationRecursion(finalSum, partialArray):
-    partialSum = SumArrayValues(partialArray)
+def GenerateSumsPermutationRecursion(finalSum, partialArray, partialSum):
     if (partialSum == finalSum):
         return [partialArray]
 
     sums = []
-    for n in range(1, finalSum - partialSum + 1):
-        newPartialArray = partialArray + [n]
-        sums += GenerateSumsPermutationRecursion(finalSum, newPartialArray)
+    for n in xrange(1, finalSum - partialSum + 1):
+        sums += GenerateSumsPermutationRecursion(finalSum, partialArray + [n], partialSum + n)
     return sums
         
         

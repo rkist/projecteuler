@@ -105,5 +105,9 @@ def SolveProblem():
     print(len(path))
     print([37,27,26,25,24,23,22,21,31,41,51,61,71,81,91,92,93,94,95,96,86,76,66,56,46,36])             
     print(path)
-       
-    return f
+
+
+    return path
+
+
+     
