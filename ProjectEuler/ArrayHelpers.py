@@ -229,3 +229,27 @@ def RemoveDuplicatedItemsFromArray(array):
     itemsList = list(itemsSet)
     return itemsList
 
+
+def Determinant(matrix):
+    return det(matrix)   
+    
+def det(M):
+    size = len(M)    
+    if (size == 1):
+        return M[0][0]    
+    if (size == 2):
+        return M[0][0] * M[1][1] - M[0][1] * M[1][0]
+    
+    sum = 0
+    for i in range(size):
+        sum += (-1)**(i) * M[0][i] * det(minor(M, 0, i))
+    
+    return sum
+    
+def minor(M, ii,jj):
+    newM = []
+    for i,row in enumerate(M):
+        if (i != ii):
+            newM.append([cell for j, cell in enumerate(row) if j != jj])
+    return newM
+

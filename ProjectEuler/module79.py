@@ -93,21 +93,68 @@ def calcPath(path, destiny, remainingStations, stackSize):
             
     return sortedPaths[0]
 
+def memoize(func):
+    cache = dict()
 
+    def memoized_func(*args):
+        if args not in cache:
+            cache[args] = func(*args)
+        return cache[args]        
+
+    return memoized_func
+
+
+
+arr = [89, 271, 325, 328, 890, 1025, 1055, 1081, 1129, 1169]
+def sq_cub_rev_prime(n):
+    global arr
+    i = arr[-1] + 1
+       
+    primeTest = (IsPrime)       
+
+    while(len(arr) < n):        
+        if (TestSquare(i, primeTest) and TestCube(i, primeTest)):
+            arr.append(i)
+        i+=1
+    return arr[n-1] 
+
+
+def TestSquare(n, primeTest):    
+    n2 = n*n
+    n2r = Reverse(n2)
+
+    return primeTest(n2r)
+        
+
+def TestCube(n, primeTest):         
+    n3 = n*n*n
+    n3r = Reverse(n3)
+       
+    return primeTest(n3r)
 
 
 def SolveProblem():
     print __name__
+    global arr
 
-    stations = [37,61,92,36]
-    path = four_pass(stations)
+    #stations = [37,61,92,36]
+    #path = four_pass(stations)
 
-    print(len(path))
-    print([37,27,26,25,24,23,22,21,31,41,51,61,71,81,91,92,93,94,95,96,86,76,66,56,46,36])             
-    print(path)
+    #print(len(path))
+    #print([37,27,26,25,24,23,22,21,31,41,51,61,71,81,91,92,93,94,95,96,86,76,66,56,46,36])             
+    #print(path)
 
 
-    return path
+    sq_cub_rev_prime(50)
+    sq_cub_rev_prime(90)
+    aaa = sq_cub_rev_prime(250)
+
+
+    print arr
+    
+
+
+    return aaa
 
 
      

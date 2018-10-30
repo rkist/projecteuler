@@ -22,6 +22,17 @@ def GetPrimesInRange(range):
             primes.append(i)
     return primes 
 
+def Square(n):
+    return n*n;
+    
+def Cube(n):
+    return n*n*n;    
+    
+def Reverse(n):
+    if (n == 0):
+        return 0
+    return  int(str(abs(n))[::-1]) * (n/abs(n))
+
 #divisorsArrayCache = {}
 #def GetDivisorsSortedArray(value):
 #    if (not divisorsArrayCache.has_key(value)):
@@ -101,11 +112,14 @@ def IsPrime(value):
     if (value < 2):
         return False
 
-    limit = int(sqrt(value) + 1)+1
+    limit = (SmallerIntSqrt(value) + 1)
     for divisor in range(2,limit):
-        if (value != divisor) and (value % divisor == 0):
+        if (value % divisor == 0):
             return False
     return True
+
+
+
 
 def Factorial(num):
     return factorial(num)
