@@ -253,3 +253,47 @@ def minor(M, ii,jj):
             newM.append([cell for j, cell in enumerate(row) if j != jj])
     return newM
 
+
+def PathFinder(maze): # can go to lower right corner from upper left one
+    m = []
+    for line in maze.splitlines():
+        l = []
+        for c in line:
+            if (c == '.'):
+                l.append(0)
+            if (c == 'W'):
+                l.append(1)
+        m.append(l)
+        
+    return path_finder_recursion( m, (0,0), (len(m)-1,len(m[0])-1) )
+    
+    
+    
+def path_finder_recursion(maze, currPos, destiny):
+    len0 = len(maze)
+    len1 = len(maze[0])
+    i = currPos[0]
+    j = currPos[1]
+    
+    if (currPos == destiny):
+        return True
+    
+    if (i < 0 or j < 0):
+        return False
+        
+    if (i >= len0 or j >= len1):
+        return False
+        
+    if (maze[i][j] == 1):
+        return False
+        
+    maze[i][j] = 1
+    
+    return path_finder_recursion(maze, (i+1, j), destiny) or \
+        path_finder_recursion(maze, (i, j+1), destiny) or \
+        path_finder_recursion(maze, (i-1, j), destiny) or \
+        path_finder_recursion(maze, (i, j-1), destiny)
+    
+    
+    
+
