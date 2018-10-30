@@ -13,3 +13,13 @@ def ParallelProcess(function, array, num_cores = 0):
 
     return results
 
+
+def memoize(func):
+    cache = dict()
+
+    def memoized_func(*args):
+        if args not in cache:
+            cache[args] = func(*args)
+        return cache[args]        
+
+    return memoized_func
