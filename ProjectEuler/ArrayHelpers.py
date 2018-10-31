@@ -265,15 +265,25 @@ def PathFinder(maze): # can go to lower right corner from upper left one
                 l.append(1)
         m.append(l)
         
-    return path_finder_recursion( m, (0,0), (len(m)-1,len(m[0])-1) )
+#     printMaze(m)
+        
+    return path_finder_recursion( m, (0,0), (len(m)-1,len(m[0])-1) , 0)
     
+def printMaze(maze):
+    for line in maze:
+        print(line)
+    print()
     
-    
-def path_finder_recursion(maze, currPos, destiny):
+def path_finder_recursion(maze, currPos, destiny, recSize):
     len0 = len(maze)
     len1 = len(maze[0])
     i = currPos[0]
     j = currPos[1]
+    
+    if (recSize > 500):
+        return False
+    
+#     printMaze(maze)
     
     if (currPos == destiny):
         return True
@@ -287,12 +297,15 @@ def path_finder_recursion(maze, currPos, destiny):
     if (maze[i][j] == 1):
         return False
         
-    maze[i][j] = 1
+    maze[i][j] = 1    
+    vectors = [(+1,0),(0,+1),(-1,0),(0,-1)]
     
-    return path_finder_recursion(maze, (i+1, j), destiny) or \
-        path_finder_recursion(maze, (i, j+1), destiny) or \
-        path_finder_recursion(maze, (i-1, j), destiny) or \
-        path_finder_recursion(maze, (i, j-1), destiny)
+    for vector in vectors:
+        newPos = (currPos[0] + vector[0], currPos[1] + vector[1])
+        if (path_finder_recursion(maze[:], newPos, destiny, recSize + 1)):
+            return True
+            
+    return False   
     
     
     
