@@ -96,26 +96,7 @@ def calcPath(path, destiny, remainingStations, stackSize):
 
 def SolveProblem():
     print __name__
-    global arr
-
-    #stations = [37,61,92,36]
-    #path = four_pass(stations)
-
-    #print(len(path))
-    #print([37,27,26,25,24,23,22,21,31,41,51,61,71,81,91,92,93,94,95,96,86,76,66,56,46,36])             
-    #print(path)
 
 
-    sq_cub_rev_prime(50)
-    sq_cub_rev_prime(90)
-    aaa = sq_cub_rev_prime(250)
+    return 0
 
-
-    print arr
-    
-
-
-    return aaa
-
-
-     

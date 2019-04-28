@@ -7,7 +7,6 @@ if __name__ == "__main__":
     result = SolveProblem()
     finish = time.time()
 
-
     print("Time:   %ss" % (finish - start))
     print("Result: " + str(result))
 

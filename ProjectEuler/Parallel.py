@@ -1,5 +1,4 @@
-from distributed import joblib
-from joblib import Parallel, delayed
+from sklearn.externals.joblib import Parallel, delayed
 
 import multiprocessing
 from multiprocessing import Process, Queue
