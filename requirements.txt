@@ -1,0 +1,5 @@
+numpy
+scipy
+Parallel
+scikit-learn 
+joblib
