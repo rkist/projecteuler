@@ -43,8 +43,8 @@ def SolveProblem():
     for edge in edges:
         dag.add_edge(edge[0], edge[1])
 
-    # plotter = GraphPlotter()
-    # plotter.drawDAG(dag)
+    plotter = GraphPlotter()
+    plotter.drawDAG(dag)
 
     L = kahn(dag)
     passcode = "".join(L)
