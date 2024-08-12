@@ -1,41 +1,37 @@
-import networkx as nx
-import matplotlib.pyplot as plt
-
-class GraphPlotter:
-    def __init__(self):
-        self.G = nx.DiGraph()
-
-    def createGraph(self, nodes, edges):
-        self.G = nx.DiGraph()
-        for node in nodes:
-            self.G.add_node(node)
-        for edge in edges:
-            self.G.add_edge(edge[0], edge[1])
-
-
-    def drawGraph(self):
-        pos = nx.spring_layout(self.G)
-        nx.draw_networkx(self.G, pos, with_labels=True, arrows=True)
-        plt.show()
 
 class Graph:
     def __init__(self, nodes: set):
-        self.plotter = GraphPlotter()
+        self.nodes = nodes
 
-    def plot(self, nodes, edges):
-        self.plotter.createGraph(nodes, edges)
-        self.plotter.drawGraph()
+    def get_nodes(self) -> set:
+        return self.nodes
+    
+    def add_node(self, node):
+        self.nodes.add(node)
 
 class DAG (Graph):
     def __init__(self, nodes: set):
-        self.nodes = nodes
+        super().__init__(nodes)
         self.edges = {node: [] for node in nodes}
+
+    def add_node(self, node):
+        super().add_node(node)
+        self.edges[node] = []
 
     def add_edge(self, start, end):
         self.edges[start].append(end)
 
-    def get_nodes(self) -> set:
-        return self.nodes
+    def remove_edge(self, start, end):
+        self.edges[start].remove(end)
+
+    def remove_node(self, node):
+        self.nodes.remove(node)
+        parents = self.get_parents(node)
+        for parent in parents:
+            self.remove_edge(parent, node)
+        children = self.get_children(node)
+        for child in children:
+            self.remove_edge(node, child)
     
     def get_edges(self) -> dict:
         return self.edges
