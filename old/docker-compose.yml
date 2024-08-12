@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  python:
+    container_name: projecteuler
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./ProjectEuler/:/projecteuler/
+    command: python /projecteuler/ProjectEuler.py
+
