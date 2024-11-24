@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 import time
-from problem81.problem81 import SolveProblem
+from problem82.problem82 import SolveProblem
 
 
 if __name__ == "__main__":    
