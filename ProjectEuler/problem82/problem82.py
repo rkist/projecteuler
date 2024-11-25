@@ -10,26 +10,49 @@ def readMatrixFromFile(filename):
 def minPathSum(matrix) -> int:
     n = len(matrix)
     m = len(matrix[0])
-    auxMatrix = [[-1 for _ in range(m)] for _ in range(n)]
-    dp = minPathSumRecursive(matrix, auxMatrix, n - 1, m - 1)
-    return dp
+    dps = [9999999999 for _ in range(n)]
+    for i in range(n):
+        auxMatrix = [[-1 for _ in range(m)] for _ in range(n)]
+        visited = set()
+        dps[i] = minPathSumRecursive(matrix, auxMatrix, i, m - 1, n, m, visited)
+    print(len(dps), dps)
+    return min(dps)
+
+def toupleSchema(i,j):
+    return 1000*i + j
 
 
-def minPathSumRecursive(matrix, aux, i, j) -> int:
+def minPathSumRecursive(matrix, aux, i, j, leni, lenj, visited) -> int:
+    if toupleSchema(i, j) in visited:
+        return 999999999999999
+    
+    visited.add(toupleSchema(i, j))
+
+    if i < 0 or j < 0 or i >= leni or j >= lenj:
+        return 999999999999999
+    
     if aux[i][j] == -1:
-        if i == 0 and j == 0:
+        if j == 0:
             aux[i][j] = matrix[i][j]
-        elif i == 0:
-            aux[i][j] = matrix[i][j] + minPathSumRecursive(matrix, aux, i, j - 1)
-        elif j == 0:
-            aux[i][j] = matrix[i][j] + minPathSumRecursive(matrix, aux, i - 1, j)
         else:
-            aux[i][j] = matrix[i][j] + min(minPathSumRecursive(matrix, aux, i - 1, j), minPathSumRecursive(matrix, aux, i, j - 1))
+            up = minPathSumRecursive(matrix, aux, i - 1, j, leni, lenj, visited)
+            down = minPathSumRecursive(matrix, aux, i + 1, j, leni, lenj, visited)
+            left = minPathSumRecursive(matrix, aux, i, j - 1, leni, lenj, visited.copy())
+            
+            aux[i][j] = matrix[i][j] + min(up, left, down)
     return aux[i][j]
 
 
 def SolveProblem():
     print(__name__)
+
+    testMatrix04 = [[131, 1, 234, 103, 18],
+                [200, 1, 1, 1, 150],
+                [630, 1, 746, 1, 1],
+                [1, 1, 497, 121, 956],
+                [805, 732, 524, 37, 331]]
+    
+    answer04 = 8
 
     testMatrix03 = [[131, 673, 234, 103, 18],
                 [201, 96, 342, 965, 150],
@@ -39,14 +62,14 @@ def SolveProblem():
     
     answer03 = 994
 
-    testMatrix02 = [[1, 1, 3],
-                    [2, 1, 3],
-                    [3, 1, 1]]
-    answer02 = 5
+    testMatrix02 = [[9, 1, 6],
+                    [1, 1, 3],
+                    [8, 1, 1]]
+    answer02 = 4
 
     testMatrix01 = [[1, 1],
-                    [2, 1]]
-    answer01 = 3
+                    [5, 1]]
+    answer01 = 2
 
     probemMatrix = readMatrixFromFile("problem82/matrix.txt")
 
@@ -54,6 +77,7 @@ def SolveProblem():
     restult01 = minPathSum(testMatrix01)
     restult02 = minPathSum(testMatrix02)
     restult03 = minPathSum(testMatrix03)
+    restult04 = minPathSum(testMatrix04)
 
     print("Result01: " + str(restult01))
     print("Answer01: " + str(answer01))
@@ -63,6 +87,9 @@ def SolveProblem():
 
     print("Result03: " + str(restult03))
     print("Answer03: " + str(answer03))
+
+    print("Result04: " + str(restult04))
+    print("Answer04: " + str(answer04))
 
     result = minPathSum(probemMatrix)
 
