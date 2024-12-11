@@ -15,29 +15,56 @@ def minPathSum(matrix) -> int:
         auxMatrix = [[-1 for _ in range(m)] for _ in range(n)]
         visited = set()
         dps[i] = minPathSumRecursive(matrix, auxMatrix, i, m - 1, n, m, visited)
-    print(len(dps), dps)
+        print(auxMatrix)
+    printMatrix(len(dps), dps)
     return min(dps)
 
 def toupleSchema(i,j):
-    return 1000*i + j
+    n = 1000*i + j
+    return n
+
+def reverseToupleSchema(n):
+    i, j = int(n/1000), (n%1000)
+    return (i, j) 
+
+def printvisited(visited):
+    s = ""
+    for n in visited:
+        i, j = reverseToupleSchema(n)
+        s += f"({i},{j}), "
+    print(s)
+
+def printMatrix(m):
+    ii = len(m)
+    jj = len(m[0])
+
+    for i in range(ii):
+        s = ""
+        for j in range(jj):
+            s += f"{m[i][j]} "
+        print(s)
 
 
 def minPathSumRecursive(matrix, aux, i, j, leni, lenj, visited) -> int:
+    print(i,j)
+    printvisited(visited)
+
     if toupleSchema(i, j) in visited:
         return 999999999999999
-    
-    visited.add(toupleSchema(i, j))
 
     if i < 0 or j < 0 or i >= leni or j >= lenj:
         return 999999999999999
+    
+    visited.add(toupleSchema(i, j))
+    new_visited = visited.copy()
     
     if aux[i][j] == -1:
         if j == 0:
             aux[i][j] = matrix[i][j]
         else:
-            up = minPathSumRecursive(matrix, aux, i - 1, j, leni, lenj, visited)
-            down = minPathSumRecursive(matrix, aux, i + 1, j, leni, lenj, visited)
-            left = minPathSumRecursive(matrix, aux, i, j - 1, leni, lenj, visited.copy())
+            up = minPathSumRecursive(matrix, aux, i - 1, j, leni, lenj, new_visited)
+            down = minPathSumRecursive(matrix, aux, i + 1, j, leni, lenj, new_visited)
+            left = minPathSumRecursive(matrix, aux, i, j - 1, leni, lenj, new_visited)
             
             aux[i][j] = matrix[i][j] + min(up, left, down)
     return aux[i][j]
@@ -76,8 +103,8 @@ def SolveProblem():
 
     restult01 = minPathSum(testMatrix01)
     restult02 = minPathSum(testMatrix02)
-    restult03 = minPathSum(testMatrix03)
-    restult04 = minPathSum(testMatrix04)
+    # restult03 = minPathSum(testMatrix03)
+    # restult04 = minPathSum(testMatrix04)
 
     print("Result01: " + str(restult01))
     print("Answer01: " + str(answer01))
@@ -85,16 +112,16 @@ def SolveProblem():
     print("Result02: " + str(restult02))
     print("Answer02: " + str(answer02))
 
-    print("Result03: " + str(restult03))
-    print("Answer03: " + str(answer03))
+    # print("Result03: " + str(restult03))
+    # print("Answer03: " + str(answer03))
 
-    print("Result04: " + str(restult04))
-    print("Answer04: " + str(answer04))
+    # print("Result04: " + str(restult04))
+    # print("Answer04: " + str(answer04))
 
-    result = minPathSum(probemMatrix)
+    # result = minPathSum(probemMatrix)
+    # return result
 
-    return result
-
+    return -1
 
 
 if __name__ == "__main__":
